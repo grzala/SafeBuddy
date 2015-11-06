@@ -1,0 +1,15 @@
+#map-container {
+	width: 325px;
+	height: 600px;
+}
+
+path {
+  stroke-width: 1px;
+  stroke: white;
+  fill: #5e61f0;
+  cursor: pointer;
+}
+
+path:hover, path.highlighted {
+  fill: #ff9380;
+}
