@@ -1,5 +1,37 @@
 var gssToRegions = {
-	"S12000017": "Highland"
+	"S12000033": "Aberdeen City",
+	"S12000034": "Aberdeenshire",
+	"S12000041": "Angus",
+	"S12000035": "Argyll & Bute",
+	"Clackmannshire": "Clackmananshire",
+	"Dumfries And Galloway": "Dumfries & Galloway",
+	"S12000042": "Dundee City",
+	"East Ayrshire": "East Ayshire",
+	"S12000045": "East Dunbartonshire",
+	"S12000010": "East Lothian",
+	"S12000011": "East Renfrewshire",
+	"S12000036": "City Of Edinburgh",
+	"S12000013": "Eilean Siar",
+	"S12000014": "Falkirk",
+	"S12000015": "Fife",
+	"S12000046": "Glasgow City",
+	"S12000017": "Highland",
+	"S12000018": "Inverclyde",
+	"S12000019": "Midlothian",
+	"S12000020": "Moray",
+	"S12000021": "North Ayrshire",
+	"S12000044": "North Lanarkshire",
+	"S12000023": "Orkney Islands",
+	"S12000024": "Perth & Kinross",
+	"S12000038": "Renfrewshire",
+	"S12000026": "Scottish Borders",
+	"S12000027": "Shetland Islands",
+	"S12000028": "South Ayrshire",
+	"S12000029": "South Lanarkshire",
+	"S12000030": "Stirling",
+	"S12000039": "West Dunbartonshire",
+	"S12000040": "West Lothian",
+	
 }
 
 function createMap() {
@@ -45,5 +77,6 @@ function createMap() {
 // Add optional onClick events for features here
 // d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
 function clicked(d,i) {
-	console.log(gssToRegions[d.properties.gss]);
+	$("#selected-region").text("You have selected: " + gssToRegions[d.properties.gss]);
+	$("#select-region").show();
 }
