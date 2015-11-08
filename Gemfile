@@ -45,7 +45,7 @@ group :development do
   gem 'spring'
 end
 
-group :test do
+group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'rspec-rails'
