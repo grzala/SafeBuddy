@@ -1,24 +1,34 @@
 When(/^I click register$/) do
-  click_link("register");
+  $session.click_link("register");
 end
 
 When(/^fill in "(.*?)" with "(.*?)"$/) do |input, value|
-	fill_in(input, :with => value)
+  $session.fill_in(input, :with => value)
 end
 
 When(/^submit register form$/) do
-  click_button("register")
+  $session.click_button("register")
 end
 
-When(/^click login$/) do
-  click_link("send-login-form")
+Then(/^I should see the welcome message for "(.*?)"$/) do |usr|
+  expect($session).to have_content("Hello, " + usr)
 end
 
-Then(/^I should see the welcome message$/) do
-  user = User.find(session[:user_id])
-  expect(page).to have_content("Hello, " + user.name)
+When(/^I log in as "(.*?)" "(.*?)"$/) do |name, pass|
+  $session.fill_in("username", :with => name)
+  $session.fill_in("password", :with => pass)
+  $session.click_link("send-login-form")
+
 end
 
-Then(/^I should be logged in$/) do
-  expect(session[:user_id]).to be
+When(/^I click logout$/) do
+  $session.click_link("logout")
+end
+
+Then(/^I should not see the welcome message for "(.*?)"$/) do |usr|
+  expect($session).not_to have_content("Hello, " + usr)
+end
+
+Then(/^I should see the message "(.*?)"$/) do |message|
+  expect($session).to have_content(message)
 end

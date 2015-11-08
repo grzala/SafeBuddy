@@ -31,7 +31,6 @@ var gssToRegions = {
 	"S12000030": ["Stirling", 30],
 	"S12000039": ["West Dunbartonshire", 31],
 	"S12000040": ["West Lothian", 32],
-	
 }
 
 function createMap() {

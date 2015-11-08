@@ -1,4 +1,10 @@
-<form id="register_form" method="post" action="/users/new">
+<div id="register-error">
+	Registeration was unsuccesful due to following errors:
+	<ul>
+	</ul>
+</div>
+
+<form id="register_form" method="post" action="/users/new" onsubmit="return validateRegisterForm()">
 	<fieldset name="register">
 	<legend>Register</legend>
 	
@@ -7,19 +13,99 @@
 		<input type="text" id="register_username" name="register_username"/>
 	</p>
 	<p>
-		<label for="register_email">e_mail</label>
+		<label for="register_email">e-mail</label>
 		<input type="text" id="register_email" name="register_email"/>
 	</p>
 	<p>
 		<label for="register_password">Password</label>
-		<input type="text" id="register_password" name="register_password"/>
+		<input type="password" id="register_password" name="register_password"/>
 	</p>
 	<p>
 		<label for="register_confirm_password">Confirm Password</label>
-		<input type="text" id="register_confirm_password" name="register_confirm_password"/>
+		<input type="password" id="register_confirm_password" name="register_confirm_password"/>
 	</p>
 	
 	<input type="submit" id="submit_register" value="register"/>
 	
 	</fieldset>
 </form>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		window.allusers = "";
+		getAllUsers();
+	});
+	
+	function getAllUsers() {
+		return $.ajax({
+			type: "GET",
+			url: "/users/all",
+			dataType: "json",
+			success: function(allusers) {
+				window.allusers = allusers;
+			}
+		});
+	}
+	
+	function validateRegisterForm() {
+		
+		$("#register-error ul").children().remove();
+	
+		var errors = {
+			"empty": "<li>make sure you entered something for every field</li>",
+			"passwords": "<li>the passwords you entered are different from each other</li>",
+			"shortpass": "<li>password must be at least 6 characters long</li>",
+			"email": "<li>the email must follow structure \"email@server.com\"</li>",
+			"username": "<li>the username is already taken</li>"
+		}
+		var username = $('#register_form').find('input[name="register_username"]').val()
+		var password = $('#register_form').find('input[name="register_password"]').val()
+		var confirmPassword = $('#register_form').find('input[name="register_confirm_password"]').val()
+		var email = $('#register_form').find('input[name="register_email"]').val()
+		
+		var toAppend = [];
+		
+		var validation = true;
+		
+		if (username == "" || password == "" || confirmPassword == "" || email == "") {
+			toAppend.push(errors["empty"]);
+			validation = false;
+		}
+		
+		if (password != confirmPassword) {
+			toAppend.push(errors["passwords"]);
+			validation = false;
+		}
+		
+		if (password.length < 6) {
+			toAppend.push(errors["shortpass"]);
+			validation = false;
+		}
+		
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		if (!re.test(email)) {
+			toAppend.push(errors["email"]);
+			validation = false;
+		}
+
+		var len = window.allusers.users.length;
+		for (var i = 0; i < len; i++) { 
+			if (username == window.allusers.users[i].name) {
+				toAppend.push(errors["username"]);
+				validation = false;
+			}
+		}
+
+		
+		$("#register-error ul").append(toAppend);
+		
+		if (!validation) {
+			$("#register-error").show();
+			return false;
+		}
+		
+		$("#register-error").hide();
+		return true;
+	}
+</script>

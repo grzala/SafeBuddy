@@ -11,4 +11,13 @@ class UsersController < ApplicationController
 		@user.save
 		redirect_to root_path
 	end
+	
+	def get_all
+		respond_to do |format|
+			format.js {
+				@users = User.all
+				render json: {:users => @users}
+			}
+		end
+	end
 end

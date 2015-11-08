@@ -13,6 +13,7 @@
 </head>
 <body>
 
+
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
@@ -44,14 +45,19 @@
 		</li>
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
-		<li class="logbox"><a>
-			<form id="login-form" action="/users/login" method="post">
-				<p>username: <input name="username" type="text"/></p>
-				<p>password: <input name="password" type="password" style="margin-left:1px;"/></p>
-			</form>
-		</a></li>
-		<li><a href="#" id="send-login-form">Log in</a></li>
-		<li><a href="/users/register" id="register">Register</a></li>
+		<% if session[:user_id].nil? %>
+			<li class="logbox"><a>
+				<form id="login-form" action="/users/login" method="post">
+					<p>username: <input name="username" type="text"/></p>
+					<p>password: <input name="password" type="password" style="margin-left:1px;"/></p>
+				</form>
+			</a></li>
+			<li><a href="#" id="send-login-form">Login</a></li>
+			<li><a href="/users/register" id="register">Register</a></li>
+		<% else %>
+			<li><a>Hello, <%= User.find(session[:user_id]).name %></a></li>
+			<li><a href="/sessions/destroy" id="logout">Logout</a></li>
+		<% end%>
 	  </ul>
 	</div><!--/.nav-collapse -->
   </div>
@@ -60,16 +66,36 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#send-login-form").click(function() {
-			$("#login-form").submit();
+			//$("#login-form").submit();
+			login();
 		});
 		$('#login-form input').keypress(function(e) {
 			var code = e.keyCode || e.which;
-			console.log(code);
 			if(code == 13) {
-				$("#login-form").submit();
+				login();
 			}
 		});
 	});
+	
+	function login() {
+		var params = {
+			username: $('#login-form').find('input[name="username"]').val(),
+			password: $('#login-form').find('input[name="password"]').val(),
+		};
+		$.ajax({
+			type: "POST",
+			url: "/sessions/create",
+			data: params,
+			dataType: "json",
+			success: function(authenticated) {
+				if(authenticated.isAuthenticated) {
+					location.reload();
+				} else {
+					$("#login-error").show().delay(3000).fadeOut(1000);
+				}
+			}
+		});
+	}
 </script>
 
 
@@ -77,6 +103,10 @@
 
 <%= yield %>
 
+<!-- wrong credentials message -->
+<div id="login-error">
+	wrong username or password
+</div>
 
 </body>
 </html>

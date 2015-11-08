@@ -1,4 +1,3 @@
-
 .logo  {
 	float: right;
 	width: 20px;
@@ -21,4 +20,16 @@
 
 .row {
 	min-width: 800px;
+}
+
+#login-error {
+	display: none;
+	top: 60px;
+	right: 15%;
+	position: absolute;
+	z-index: 10000;
+	border: 1px groove red;
+	background-color: #F8F8F8;
+	padding: 5px;
+	border-radius: 3px;
 }

@@ -1,0 +1,7 @@
+#register-error {
+	display: none;
+	border: 1px groove red;
+	background-color: #F8F8F8;
+	padding: 5px;
+	border-radius: 3px;
+}

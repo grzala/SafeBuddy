@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   get 'users/register' => 'users#register'
+  get 'users/all' => 'users#get_all'
   post 'users/new' => 'users#new'
+  
+  post 'sessions/create' => 'sessions#create'
+  get 'sessions/destroy' => 'sessions#destroy'
+  
   resources :users
   resources :crimes
   resources :regions

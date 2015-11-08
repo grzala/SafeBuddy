@@ -1,5 +1,9 @@
 Given(/^I have entered the main page$/) do
-  visit root_path
+  $session.visit "localhost:3000/"
+end
+
+Given(/^I have navigated to "(.*?)"$/) do |location|
+  $session.visit "localhost:3000" + location
 end
 
 Given(/^I am logged in$/) do
@@ -15,16 +19,16 @@ When(/^I look at the page$/) do
 end
 
 Then(/^I should see general information$/) do
-  expect(page).to have_content('SafeBuddy')
+  expect($session).to have_content('SafeBuddy')
 end
 
 Then(/^I should see a welcome message$/) do
-  expect(page).to have_content('Hello, ' + User.find(session[:user_id]).name)
+  expect($session).to have_content('Hello, ' + User.find(session[:user_id]).name)
 end
 
 Then(/^I should see the logbox$/) do
-  expect(page).to have_content("Log in");
-  expect(page).to have_content("username");
-  expect(page).to have_content("password");
+  expect($session).to have_content("Login");
+  expect($session).to have_content("username");
+  expect($session).to have_content("password");
 end
 
