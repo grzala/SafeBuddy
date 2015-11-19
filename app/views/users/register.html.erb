@@ -24,6 +24,14 @@
 		<label for="register_confirm_password">Confirm Password</label>
 		<input type="password" id="register_confirm_password" name="register_confirm_password"/>
 	</p>
+	<p>
+		<label for="register_region">Confirm Password</label>
+		<select id="register_region" name="register_region">
+			<% @regions.each do |region| %>
+				<option value="<%= region.id %>"><%= region.name %></option>
+			<% end %>
+		</select>
+	</p>
 	
 	<input type="submit" id="submit_register" value="register"/>
 	

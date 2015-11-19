@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :hash_password
       t.string :salt
       t.boolean :moderator
+      t.integer :region_id
 
       t.timestamps null: false
     end

@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20151118191418) do
     t.string   "hash_password"
     t.string   "salt"
     t.boolean  "moderator"
+    t.integer  "region_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
