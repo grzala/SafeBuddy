@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'police_regions/:id' => 'police_regions#show'
+  get 'police_regions/' => 'police_regions#index'
   get 'police_crimes/list'
 
   get 'users/register' => 'users#register'

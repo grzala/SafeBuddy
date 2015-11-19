@@ -1,27 +1,8 @@
-<h2><%= @region %></h2>
-
-<table>
-	<tr>
-		<th>year</th>
-		<th>region</th>
-		<th>category</th>
-		<th>group</th>
-		<th>number</th>
-	</tr>
-	<% @crimes.each do |crime| %>
-	<tr>
-		<td><%= crime[:year] %></td>
-		<td><%= crime[:region] %></td>
-		<td><%= crime[:category] %></td>
-		<td><%= crime[:group] %></td>
-		<td><%= crime[:number] %></td>
-	</tr>
-	<% end %>
-</table>
-
 <script src="http://code.highcharts.com/highcharts.js"></script>
 
-<div id="chart" style="width: 600px; height: 400px; margin: 0 auto"></div>
+<div id="crimes-and-offences" style="width:100%; height: 600px; margin: 0 auto"></div>
+<div id="crimes" style="width:100%; height: 600px; margin: 0 auto"></div>
+<div id="violent" style="width:100%; height: 600px; margin: 0 auto"></div>
 
 
 
@@ -36,11 +17,35 @@
 		url: "/police_regions/"+window.id,
 		dataType: "json",
 		success: function(crimes) {
-			createChart(crimes);
+			createCrimesAndOffencesRegionPieChart(crimes);
+			createCrimeRegionPieChart(crimes);
+			createViolentRegionPieChart(crimes);
 		}
 	});
 	
-	function createChart(crimes) {
+	function createCrimeRegionPieChart(crimes){
+		var newCrimes = [];
+		var len = crimes.length;
+		for (var i = 0; i < len; i++) {
+			if (crimes[i].group != "Motor vehicle offences" && crimes[i].group != "Miscellaneous offences") newCrimes.push(crimes[i]);
+		}
+		createRegionPieChart(newCrimes, "Crimes in: ", "crimes", 5);
+	}
+	
+	function createCrimesAndOffencesRegionPieChart(crimes)  {
+		createRegionPieChart(crimes, "Crimes and Offences in: ", "crimes-and-offences", 10);
+	}
+	
+	function createViolentRegionPieChart(crimes)  {
+		var newCrimes = [];
+		var len = crimes.length;
+		for (var i = 0; i < len; i++) {
+			if (crimes[i].group == "Non-sexual crimes of violence" || crimes[i].group == "Sexual offences") newCrimes.push(crimes[i]);
+		}
+		createRegionPieChart(newCrimes, "Violent crimes in: ", "violent", 0);
+	}
+	
+	function createRegionPieChart(crimes, title, id, limitLow) {
 		$(function () {
 			
 			var groups = [];
@@ -111,12 +116,12 @@
 			}
 
 			// Create the chart
-			$('#chart').highcharts({
+			$('#'+id).highcharts({
 				chart: {
 					type: 'pie'
 				},
 				title: {
-					text: 'Crimes in: '+crimes[0].region
+					text: title+crimes[0].region
 				},
 				yAxis: {
 					title: {
@@ -130,12 +135,12 @@
 					}
 				},
 				series: [{
-					name: 'Browsers',
+					name: 'Crimes',
 					data: crimeData,
 					size: '60%',
 					dataLabels: {
 						formatter: function () {
-							return this.y > 5 ? this.point.name : null;
+							return this.y > limitLow ? this.point.name : null;
 						},
 						color: '#ffffff',
 						distance: -30
@@ -148,7 +153,7 @@
 					dataLabels: {
 						formatter: function () {
 							// display only if larger than 1
-							return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y : null;
+							return this.y > limitLow ? '<b>' + this.point.name + ':</b> ' + this.y : null;
 						}
 					}
 				}]
