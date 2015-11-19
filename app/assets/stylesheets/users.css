@@ -18,7 +18,7 @@
 	width: 60%;
 }
 
-#register-box .input-box input, select {
+#register-box .input-box input, #register-box .input-box select {
 	width: 100%;
 }
 

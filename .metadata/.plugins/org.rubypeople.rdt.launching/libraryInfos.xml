@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<libraryInfo home="/usr" version="1.9.3" vmTypeId="org.rubypeople.rdt.launching.StandardVMType">
+<bootpath>
+<entry path="/usr/local/lib/site_ruby/1.9.1"/>
+<entry path="/usr/local/lib/site_ruby/1.9.1/x86_64-linux"/>
+<entry path="/usr/local/lib/site_ruby"/>
+<entry path="/usr/lib/ruby/vendor_ruby/1.9.1"/>
+<entry path="/usr/lib/ruby/vendor_ruby/1.9.1/x86_64-linux"/>
+<entry path="/usr/lib/ruby/vendor_ruby"/>
+<entry path="/usr/lib/ruby/1.9.1"/>
+<entry path="/usr/lib/ruby/1.9.1/x86_64-linux"/>
+</bootpath>
+</libraryInfo>
+<libraryInfo home="/home/grzala/Desktop/Aptana RadRails/plugins/org.jruby_1.2.0.9419p2" version="OpenJDK 64-Bit Server VM warning: You have loaded library /home/grzala/Desktop/Aptana RadRails/plugins/org.jruby_1.2.0.9419p2/lib/native/linux-amd64/libjnidispatch.so which might have disabled stack guard. The VM will try to fix the stack guard now." vmTypeId="org.rubypeople.rdt.launching.JRubyVMType">
+<bootpath>
+<entry path="/home/grzala/Desktop/Aptana RadRails/plugins/org.jruby_1.2.0.9419p2/lib/ruby/site_ruby/1.8"/>
+<entry path="/home/grzala/Desktop/Aptana RadRails/plugins/org.jruby_1.2.0.9419p2/lib/ruby/site_ruby"/>
+<entry path="/home/grzala/Desktop/Aptana RadRails/plugins/org.jruby_1.2.0.9419p2/lib/ruby/1.8"/>
+</bootpath>
+</libraryInfo>
+</libraryInfos>
