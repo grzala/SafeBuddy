@@ -1,3 +1,5 @@
+<ul>
 <% @regions.each do |region| %>
-	<p><a href=<%= "/police_regions/"+region.id.to_s %>><%= region.name %></a></p>
+	<li><a style="color:black;" href=<%= "/police_regions/"+region.id.to_s %>><%= region.name %></a></li>
 <% end %>
+<ul>

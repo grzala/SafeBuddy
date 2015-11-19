@@ -4,39 +4,41 @@
 	</ul>
 </div>
 
+<div id="register-box">
 <form id="register_form" method="post" action="/users/new" onsubmit="return validateRegisterForm()">
 	<fieldset name="register">
 	<legend>Register</legend>
-	
-	<p>
-		<label for="register_username">Username</label>
-		<input type="text" id="register_username" name="register_username"/>
-	</p>
-	<p>
-		<label for="register_email">e-mail</label>
-		<input type="text" id="register_email" name="register_email"/>
-	</p>
-	<p>
-		<label for="register_password">Password</label>
-		<input type="password" id="register_password" name="register_password"/>
-	</p>
-	<p>
-		<label for="register_confirm_password">Confirm Password</label>
-		<input type="password" id="register_confirm_password" name="register_confirm_password"/>
-	</p>
-	<p>
-		<label for="register_region">Confirm Password</label>
-		<select id="register_region" name="register_region">
-			<% @regions.each do |region| %>
-				<option value="<%= region.id %>"><%= region.name %></option>
-			<% end %>
-		</select>
-	</p>
-	
+	<div class="input-box">
+		<p>
+			<label for="register_username">Username</label>
+			<input type="text" id="register_username" name="register_username"/>
+		</p>
+		<p>
+			<label for="register_email">E-mail</label>
+			<input type="text" id="register_email" name="register_email"/>
+		</p>
+		<p>
+			<label for="register_password">Password</label>
+			<input type="password" id="register_password" name="register_password"/>
+		</p>
+		<p>
+			<label for="register_confirm_password">Confirm Password</label>
+			<input type="password" id="register_confirm_password" name="register_confirm_password"/>
+		</p>
+		<p>
+			<label for="register_region">Select your region</label>
+			<select id="register_region" name="register_region">
+				<% @regions.each do |region| %>
+					<option value="<%= region.id %>"><%= region.name %></option>
+				<% end %>
+			</select>
+		</p>
+	</div>
 	<input type="submit" id="submit_register" value="register"/>
 	
 	</fieldset>
 </form>
+</div>
 
 <script type="text/javascript">
 

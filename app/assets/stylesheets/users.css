@@ -5,3 +5,23 @@
 	padding: 5px;
 	border-radius: 3px;
 }
+
+#register-box {
+	width: 40%;
+	margin: auto;
+	text-align: center;
+	border: 1px solid #C0C0C0;
+}
+
+#register-box .input-box {
+	margin: auto;
+	width: 60%;
+}
+
+#register-box .input-box input, select {
+	width: 100%;
+}
+
+#register-box select {
+	text-align: center;
+}
