@@ -1,0 +1,18 @@
+<table>
+	<tr>
+		<th>year</th>
+		<th>region</th>
+		<th>category</th>
+		<th>group</th>
+		<th>number</th>
+	</tr>
+	<% @crimes.each do |crime| %>
+	<tr>
+		<td><%= crime[:year] %></td>
+		<td><%= crime[:region] %></td>
+		<td><%= crime[:category] %></td>
+		<td><%= crime[:group] %></td>
+		<td><%= crime[:number] %></td>
+	</tr>
+	<% end %>
+</table>

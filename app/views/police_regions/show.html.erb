@@ -1,0 +1,159 @@
+<h2><%= @region %></h2>
+
+<table>
+	<tr>
+		<th>year</th>
+		<th>region</th>
+		<th>category</th>
+		<th>group</th>
+		<th>number</th>
+	</tr>
+	<% @crimes.each do |crime| %>
+	<tr>
+		<td><%= crime[:year] %></td>
+		<td><%= crime[:region] %></td>
+		<td><%= crime[:category] %></td>
+		<td><%= crime[:group] %></td>
+		<td><%= crime[:number] %></td>
+	</tr>
+	<% end %>
+</table>
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+
+<div id="chart" style="width: 600px; height: 400px; margin: 0 auto"></div>
+
+
+
+<%= javascript_tag do %>
+  window.id = '<%= params[:id] %>';
+<% end %>
+
+<script type="text/javascript">
+
+	$.ajax({
+		type: "GET",
+		url: "/police_regions/"+window.id,
+		dataType: "json",
+		success: function(crimes) {
+			createChart(crimes);
+		}
+	});
+	
+	function createChart(crimes) {
+		$(function () {
+			
+			var groups = [];
+			var subgroups = {};
+			var len = crimes.length;
+			for (var i = 0; i < len; i++) {
+				var group = crimes[i].group;
+				if(groups.indexOf(group) < 0) {
+					groups.push(group);
+					subgroups[group] = {};
+					subgroups[group]["name"] = [];
+					subgroups[group]["number"] = [];
+					subgroups[group]["sum"] = 0;
+				}
+				subgroups[group]["name"].push(crimes[i].category);
+				subgroups[group]["number"].push(crimes[i].number);
+			}
+			
+			for (var g in subgroups) {
+				for (var number in subgroups[g]["number"]) {
+					subgroups[g]["sum"] += subgroups[g]["number"][number];
+				}
+			}
+
+			var colors = Highcharts.getOptions().colors;
+			var categories = groups;
+			var data = [];
+			var col = 0;
+			for (var g in subgroups) {
+				var division =  {
+					y: subgroups[g]["sum"],
+					color: colors[col],
+					drilldown: {
+						name: 'MSIE versions',
+						categories: subgroups[g]["name"],
+						data: subgroups[g]["number"],
+						color: colors[col]
+					}
+				}
+				col++;
+				data.push(division);
+			}
+			var crimeData = [];
+			var versionsData = [];
+			var dataLen = data.length;
+
+
+			// Build the data arrays
+			for (var i = 0; i < dataLen; i++) {
+
+				// add browser data
+				crimeData.push({
+					name: categories[i],
+					y: data[i].y,
+					color: data[i].color
+				});
+
+				// add version data
+				var drillDataLen = data[i].drilldown.data.length;
+				for (var j = 0; j < drillDataLen; j++) {
+					var brightness = 0.2 - (j / drillDataLen) / 5;
+					versionsData.push({
+						name: data[i].drilldown.categories[j],
+						y: data[i].drilldown.data[j],
+						color: Highcharts.Color(data[i].color).brighten(brightness).get()
+					});
+				}
+			}
+
+			// Create the chart
+			$('#chart').highcharts({
+				chart: {
+					type: 'pie'
+				},
+				title: {
+					text: 'Crimes in: '+crimes[0].region
+				},
+				yAxis: {
+					title: {
+						text: 'Number of crimes'
+					}
+				},
+				plotOptions: {
+					pie: {
+						shadow: false,
+						center: ['50%', '50%']
+					}
+				},
+				series: [{
+					name: 'Browsers',
+					data: crimeData,
+					size: '60%',
+					dataLabels: {
+						formatter: function () {
+							return this.y > 5 ? this.point.name : null;
+						},
+						color: '#ffffff',
+						distance: -30
+					}
+				}, {
+					name: 'Versions',
+					data: versionsData,
+					size: '80%',
+					innerSize: '60%',
+					dataLabels: {
+						formatter: function () {
+							// display only if larger than 1
+							return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y : null;
+						}
+					}
+				}]
+			});
+		});
+	
+	}
+</script>

@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107211731) do
+ActiveRecord::Schema.define(version: 20151118191418) do
+
+  create_table "crime_categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "crime_groups", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "police_region_crimes", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "number"
+    t.integer  "police_region_id"
+    t.integer  "year"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "police_regions", force: :cascade do |t|
     t.string   "name"

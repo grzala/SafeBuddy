@@ -6,6 +6,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <!-- topojson -->
+ 
+  
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="http://d3js.org/topojson.v1.min.js"></script>
   <!-- bootstrap -->
@@ -57,7 +59,7 @@
 		<% else %>
 			<li><a>Hello, <%= User.find(session[:user_id]).name %></a></li>
 			<li><a href="/sessions/destroy" id="logout">Logout</a></li>
-		<% end%>
+		<% end %>
 	  </ul>
 	</div><!--/.nav-collapse -->
   </div>
