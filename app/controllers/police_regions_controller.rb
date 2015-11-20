@@ -6,7 +6,7 @@ class PoliceRegionsController < ApplicationController
 		respond_to do |format|
 			format.html {
 				@region_id = params[:id]
-				@region = PoliceRegion.find(@region_id).name
+				@region_id == "all" ? @region = PoliceRegion.all : PoliceRegion.find(@region_id).name
 				@police_crimes = PoliceRegionCrime.where(:police_region_id => @region_id)
 				@crimes = []
 				
@@ -23,8 +23,12 @@ class PoliceRegionsController < ApplicationController
 			}
 			format.js {
 				@region_id = params[:id]
-				@region = PoliceRegion.find(@region_id).name
-				@police_crimes = PoliceRegionCrime.where(:police_region_id => @region_id)
+				if @region_id == "all"
+					@police_crimes = PoliceRegionCrime.all
+				else
+					@region = PoliceRegion.find(@region_id).name
+					@police_crimes = PoliceRegionCrime.where(:police_region_id => @region_id)
+				end
 				@crimes = []
 				
 				@police_crimes.each do |crime|

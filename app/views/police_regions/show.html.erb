@@ -1,16 +1,17 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
-
+<div class="region-statistics-container">
 <p>
 	Select dataset:
 	<select class="dataset-selection">
 		<option selected value="c&o period">Crimes and offences 2009-2014</option>
 		<option value="c&o 2014">Crimes and offences 2014</option>
+		<option value="c&o comparison">Crimes and offences comparison over years</option>
 	</select>
 </p>
 
 <div id="datasets">
 </div>
-
+</div>
 
 <%= javascript_tag do %>
   window.id = '<%= params[:id] %>';
@@ -36,6 +37,25 @@
 			dataType: "json",
 			success: function(crimes) {
 				switch(selected) {
+					case "c&o comparison":
+						container.append(''+
+							'<div class="column-chart" id="Non-sexualcrimesofviolence"></div>'+
+							'<div class="column-chart" id="Sexualoffences"></div>'+
+							'<div class="column-chart" id="Crimesofdishonesty"></div>'+
+							'<div class="column-chart" id="Fire-raisingvandalismetc"></div>'+
+							'<div class="column-chart" id="Othercrimes"></div>'+
+							'<div class="column-chart" id="Miscellaneousoffences"></div>'+
+							'<div class="column-chart" id="Motorvehicleoffences"></div>'+
+						'');
+						createCrimesAndOffencesRegionColumnChart(crimes, "Non-sexual crimes of violence");
+						createCrimesAndOffencesRegionColumnChart(crimes, "Sexual offences");
+						createCrimesAndOffencesRegionColumnChart(crimes, "Crimes of dishonesty");
+						createCrimesAndOffencesRegionColumnChart(crimes, "Fire-raising, vandalism etc.");
+						createCrimesAndOffencesRegionColumnChart(crimes, "Other crimes");
+						createCrimesAndOffencesRegionColumnChart(crimes, "Miscellaneous offences");
+						createCrimesAndOffencesRegionColumnChart(crimes, "Motor vehicle offences");
+						
+						break;
 					case "c&o period":
 						container.append(''+
 							'<div class="pie-chart" id="crimes-and-offences"></div>'+
@@ -43,7 +63,7 @@
 							'<div class="pie-chart" id="violent"></div>'
 						);
 						createCrimesAndOffencesRegionPieChart(crimes, "all");
-						createCrimeRegionPieChart(crimes, "all");
+						createCrimesRegionPieChart(crimes, "all");
 						createViolentRegionPieChart(crimes, "all");
 						break;
 					case "c&o 2014":
@@ -53,7 +73,7 @@
 							'<div class="pie-chart" id="violent"></div>'
 						);
 						createCrimesAndOffencesRegionPieChart(crimes, 2014);
-						createCrimeRegionPieChart(crimes, 2014);
+						createCrimesRegionPieChart(crimes, 2014);
 						createViolentRegionPieChart(crimes, 2014);
 						break;
 					default:
@@ -66,3 +86,5 @@
 	
 	
 </script>
+
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>

@@ -1,4 +1,124 @@
-function createCrimeRegionPieChart(crimes, year){
+function createCrimesAndOffencesRegionColumnChart(crimes, group) {
+$(function () {
+	
+	//adjust title
+	var title = group+" in: "+crimes[0].region;
+	if(window.id == "all") {
+		title = title.split(" ");
+		title.splice(title.length-1, 1);
+		title = title.join(" ")+" Scotland";
+	}
+	
+	//filter crime type, clash same categories
+	var newCrimes = [];
+	for (crime in crimes) {
+		if (crimes[crime].group == group) {
+			newCrimes.push(crimes[crime]);
+		}
+	} crimes = newCrimes;
+	
+	var mainData = [];
+	var drilldownData = [];
+	var sums = {
+		2009: 0,
+		2010: 0,
+		2011: 0,
+		2012: 0,
+		2013: 0,
+		2014: 0
+	};
+	var drilldowns = {
+		2009: [],
+		2010: [],
+		2011: [],
+		2012: [],
+		2013: [],
+		2014: []
+	};
+	
+	for (crime in crimes) {
+		var y = crimes[crime].year;
+		sums[y] += crimes[crime].number;
+		var drilldown = [];
+		
+		var neu = true;
+		
+		for (d in drilldowns[y]) {
+			if(drilldowns[y][d][0] == crimes[crime].category) {
+				neu = false;
+				drilldowns[y][d][1] += crimes[crime].number;
+			}
+		}
+		if (neu) {
+			drilldown.push(crimes[crime].category);
+			drilldown.push(crimes[crime].number);
+			drilldowns[y].push(drilldown);
+		}
+	} 
+	
+	for (key in sums) {
+		mainData.push({
+			name: key,
+			y: sums[key],
+			drilldown: key
+		});
+	}
+	
+	for (key in drilldowns) {
+		drilldownData.push({
+			name: key,
+			id: key,
+			data: drilldowns[key]
+		});
+	}
+	
+    // Create the chart
+    $('#'+group.replace(/[\s,.]/g, "")).highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: title
+        },
+        subtitle: {
+			text: 'Click on a column to see more details'
+		},
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+			title: {
+				text: 'Total crimes'
+			}
+		},
+
+        legend: {
+            enabled: false
+        },
+
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+
+        series: [{
+            name: group,
+            colorByPoint: true,
+            data: mainData
+        }],
+        drilldown: {
+            series: drilldownData
+        }
+    });
+});
+	
+}
+
+function createCrimesRegionPieChart(crimes, year) {
 	var newCrimes = [];
 	var len = crimes.length;
 	for (var i = 0; i < len; i++) {
@@ -99,6 +219,14 @@ function createRegionPieChart(crimes, title, id, limitLow, year) {
 				});
 			}
 		}
+		
+		//adjust title
+		title = title+crimes[0].region;
+		if(window.id == "all") {
+			title = title.split(" ");
+			title.splice(title.length-1, 1);
+			title = title.join(" ")+" Scotland";
+		}
 
 		// Create the chart
 		$('#'+id).highcharts({
@@ -106,7 +234,7 @@ function createRegionPieChart(crimes, title, id, limitLow, year) {
 				type: 'pie'
 			},
 			title: {
-				text: title+crimes[0].region
+				text: title
 			},
 			yAxis: {
 				title: {
