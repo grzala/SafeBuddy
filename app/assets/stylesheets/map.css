@@ -1,6 +1,7 @@
 #map-container {
 	width: 325px;
 	height: 600px;
+	margin: auto;
 }
 
 path {

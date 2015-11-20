@@ -1,6 +1,8 @@
+<div class="row"><div class="list">
 <ul>
 	<% @regions.each do |region| %>
 		<li><a style="color:black;" href=<%= "/police_regions/"+region.id.to_s %>><%= region.name %></a></li>
 	<% end %>
 	<li><a style="color:black;" href="/police_regions/all">Scotland</a></li>
 <ul>
+</div></div>

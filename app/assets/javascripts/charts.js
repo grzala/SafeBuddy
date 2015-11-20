@@ -124,11 +124,11 @@ function createCrimesRegionPieChart(crimes, year) {
 	for (var i = 0; i < len; i++) {
 		if (crimes[i].group != "Motor vehicle offences" && crimes[i].group != "Miscellaneous offences") newCrimes.push(crimes[i]);
 	}
-	createRegionPieChart(newCrimes, "Crimes in: ", "crimes", 50, year);
+	createRegionPieChart(newCrimes, "Crimes in: ", "crimes", 100, year);
 }
 
 function createCrimesAndOffencesRegionPieChart(crimes, year)  {
-	createRegionPieChart(crimes, "Crimes and Offences in: ", "crimes-and-offences", 100, year);
+	createRegionPieChart(crimes, "Crimes and Offences in: ", "crimes-and-offences", 200, year);
 }
 
 function createViolentRegionPieChart(crimes, year)  {
@@ -201,14 +201,14 @@ function createRegionPieChart(crimes, title, id, limitLow, year) {
 		// Build the data arrays
 		for (var i = 0; i < dataLen; i++) {
 
-			// add browser data
+			// add main data
 			crimeData.push({
 				name: categories[i],
 				y: data[i].y,
 				color: data[i].color
 			});
 
-			// add version data
+			// add drilldown data
 			var drillDataLen = data[i].drilldown.data.length;
 			for (var j = 0; j < drillDataLen; j++) {
 				var brightness = 0.2 - (j / drillDataLen) / 5;
@@ -265,7 +265,7 @@ function createRegionPieChart(crimes, title, id, limitLow, year) {
 				innerSize: '60%',
 				dataLabels: {
 					formatter: function () {
-						// display only if larger than 1
+						// display only if larger than limit
 						return this.y > limitLow ? '<b>' + this.point.name + ':</b> ' + this.y : null;
 					}
 				}

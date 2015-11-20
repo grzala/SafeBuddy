@@ -15,7 +15,7 @@ class CreateRegions < ActiveRecord::Migration
 		"Clackmannanshire" => [5, "Central"],
 		"Dumfries & Galloway" => [6, "Dumfries & Galloway"],
 		"Dundee City" => [7, "Tayside"],
-		"East Ayshire" => [8, "Strathclyde"],
+		"East Ayrshire" => [8, "Strathclyde"],
 		"East Dunbartonshire" => [9, "Strathclyde"],
 		"East Lothian" => [10, "Lothian & Borders"],
 		"East Renfrewshire" => [11, "Strathclyde"],
