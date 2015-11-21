@@ -1,3 +1,79 @@
+function createCompareColumnChart(crimes, group) {
+	var title = "Comparison of "+group+" in all police regions";
+	var regions = [];
+	var categories = [];
+	var data = {};
+	var seriesData = [];
+	
+	//filter groups
+	var newCrimes = [];
+	for (var i in crimes) {
+		if (crimes[i].group == group) newCrimes.push(crimes[i]);
+	} crimes = newCrimes;
+	
+	//create regions and groups
+	for (var i in crimes) {
+		if (regions.indexOf(crimes[i].region) < 0) regions.push(crimes[i].region);
+		if (categories.indexOf(crimes[i].category) < 0) categories.push(crimes[i].category)
+	}
+	
+	for (var i in crimes) {
+		if (data[crimes[i].category] == undefined) {
+			data[crimes[i].category] = [];
+			for (var index in regions) {
+				data[crimes[i].category][index] = 0;
+			}
+		}
+		data[crimes[i].category][regions.indexOf(crimes[i].region)] += crimes[i].number;
+	}
+	
+	console.log(data);
+	
+	for (var key in data) {
+		seriesData.push({
+			name: key,
+			data: data[key]
+		});
+	}
+	
+	console.log(seriesData[0].data);
+
+	$('#'+group.replace(/[\s,.]/g, "")).highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: title
+        },
+        xAxis: {
+            categories: regions,
+            crosshair: true
+        },
+        yAxis: {
+            min: 20,
+            title: {
+                text: 'Total crimes'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+						 '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: seriesData
+	});
+
+}
+
 function createCrimesCouncilPieChart(crimes) {
 	
 	var title = "Crimes in: "+crimes[0].region;

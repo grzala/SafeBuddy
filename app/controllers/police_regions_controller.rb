@@ -31,4 +31,8 @@ class PoliceRegionsController < ApplicationController
 			}
 		end
 	end
+	
+	def compare
+	
+	end
 end

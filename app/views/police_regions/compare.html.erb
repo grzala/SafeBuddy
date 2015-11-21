@@ -1,0 +1,34 @@
+<div class="region-statistics-container">
+	<div id="datasets">
+		<p>Years: 2009-2013</p>
+		<div class="column-chart" id="Non-sexualcrimesofviolence"></div>
+		<div class="column-chart" id="Sexualoffences"></div>
+		<div class="column-chart" id="Crimesofdishonesty"></div>
+		<div class="column-chart" id="Fire-raisingvandalismetc"></div>
+		<div class="column-chart" id="Othercrimes"></div>
+		<div class="column-chart" id="Miscellaneousoffences"></div>
+		<div class="column-chart" id="Motorvehicleoffences"></div>
+	</div>
+</div>
+
+
+<script>
+	$(document).ready(function(){
+	
+	$.ajax({
+		type: "GET",
+		url: "/police_regions/all",
+		dataType: "json",
+		success: function(crimes) {
+			createCompareColumnChart(crimes, "Non-sexual crimes of violence");
+			createCompareColumnChart(crimes, "Sexual offences");
+			createCompareColumnChart(crimes, "Crimes of dishonesty");
+			createCompareColumnChart(crimes, "Fire-raising, vandalism etc.");
+			createCompareColumnChart(crimes, "Other crimes");
+			createCompareColumnChart(crimes, "Miscellaneous offences");
+			createCompareColumnChart(crimes, "Motor vehicle offences");
+		}
+	});
+	
+	});
+</script>
