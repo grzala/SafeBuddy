@@ -91,8 +91,8 @@
 			data: params,
 			dataType: "json",
 			success: function(authenticated) {
-				if(authenticated.isAuthenticated) {
-					location.reload();
+				if(authenticated != undefined) {
+					location.replace("/regions/"+authenticated.region_id);
 				} else {
 					$("#login-error").show().delay(3000).fadeOut(1000);
 				}

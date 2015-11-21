@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 			@password = params[:password]
 			if @usr = User.authenticate(@username, @password)
 				session[:user_id] = @usr.id
-				render json: {:isAuthenticated => true}
+				render json: @usr
 			else
 				render json: {:isAuthenticated => false}
 			end
