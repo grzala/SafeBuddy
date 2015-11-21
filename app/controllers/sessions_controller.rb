@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 				session[:user_id] = @usr.id
 				render json: @usr
 			else
-				render json: {:isAuthenticated => false}
+				render json: {}
 			end
 		 }
 		end

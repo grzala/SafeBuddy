@@ -27,16 +27,12 @@ function createCompareColumnChart(crimes, group) {
 		data[crimes[i].category][regions.indexOf(crimes[i].region)] += crimes[i].number;
 	}
 	
-	console.log(data);
-	
 	for (var key in data) {
 		seriesData.push({
 			name: key,
 			data: data[key]
 		});
 	}
-	
-	console.log(seriesData[0].data);
 
 	$('#'+group.replace(/[\s,.]/g, "")).highcharts({
         chart: {

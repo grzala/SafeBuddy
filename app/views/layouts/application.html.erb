@@ -92,7 +92,8 @@
 			data: params,
 			dataType: "json",
 			success: function(authenticated) {
-				if(authenticated != undefined) {
+				console.log(authenticated);
+				if(authenticated.name != undefined) {
 					location.replace("/regions/"+authenticated.region_id);
 				} else {
 					$("#login-error").show().delay(3000).fadeOut(1000);
