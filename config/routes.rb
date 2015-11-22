@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   
   post 'sessions/create' => 'sessions#create'
   get 'sessions/destroy' => 'sessions#destroy'
+  get 'sessions/locale/:lang' => 'sessions#change_language'
   
   resources :users
   resources :crimes

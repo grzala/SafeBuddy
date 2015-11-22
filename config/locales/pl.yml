@@ -1,0 +1,26 @@
+pl:
+#layout
+    hello: "kurwisyny"
+    Home: "Strona główna"
+    More: "Więcej"
+    Police Regions: "Regiony Policji"
+    Region Comparison: "Porównanie Regionów"
+    username: "użytkownik"
+    password: "hasło"
+    Login: "Zaloguj"
+    Register: "Rejestracja"
+    Logout: "Wyloguj"
+    login_error: "złe hasło lub login"
+    
+#main
+    main: "Witaj w SafeBuddy. Wybierz region w którym mieszkasz i sprawdź, jakich przestępsw możesz się spodziewać i obawiać w swojej okolicy. Załóż konto, by przestrzegać innych o niebezpieczeństwach w twoim regionie. Kliknij na mapy aby wybrać region:"
+    summary: "Podsumowanie przestępstw w"
+    in years: "w latach"
+    most_popular_group: "Najwięcej przestępstw w twoim regionie należy do grupy"
+    most_popular: "Najpopularniejsze przestępstwo w regionie to"
+    most_violent: "Najpopularniejsze gwałtowne przestępstwa w regionie to"
+    comment_section: "Daj innym znać o niebezpieczeństwach w tym regionie"
+    have: "Masz jeszcze"
+    chars: "znaków"
+    add: "dodaj komentarz"
+    police region: "region policji"

@@ -12,10 +12,16 @@
 
 .logbox input {
 	height: 22px;
+	float: right;
 }
 
 .logbox p {
 	margin: 2px 0px 2px 0px;
+}
+
+.main-info {
+	text-align: justify;
+	text-justify: inter-word;
 }
 
 .row {
@@ -33,4 +39,15 @@
 	background-color: #F8F8F8;
 	padding: 5px;
 	border-radius: 3px;
+}
+
+.flag {
+	float: right;
+	margin: 15px -9px 0px 10px;
+}
+
+.flag img {
+	border: 1px solid black;
+	width: 22px;
+	height: 15px;
 }

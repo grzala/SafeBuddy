@@ -15,14 +15,13 @@
   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">-->
 </head>
 <body>
-<%= javascript_tag do %>
-  window.translate = <%= I18n.backend.send(:translations).to_json.html_safe %>
-  if ("<%=session[:language]%>" == "en" || "<%=session[:language]%>" == "") {
-    translate = translate["en"]
-  } else if ("<%=session[:language]%>" == "pl") {
-	translate = translate["pl"]
-  }
+<!-- which language -->
+<% if session[:language] == "en" || session[:language].nil? %>
+	<% I18n.locale = :en %>
+<% elsif session[:language] == "pl" %>
+	<% I18n.locale = :pl %>
 <% end %>
+
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
@@ -49,7 +48,7 @@
 		  </ul>
 		</li>
 	  </ul>
-	  <a href="/sessions/locale/pl" class="flag"><img src="/pl_flag.png"/></a><a href="/sessions/locale/en" class="flag"><img src="/uk_flag.png"/></a>
+	  <a href="/sessions/locale/pl" class="flag"><img src="pl_flag.png"/></a><a href="/sessions/locale/en" class="flag"><img src="uk_flag.png"/></a>
 	  <ul class="nav navbar-nav navbar-right">
 		<% if session[:user_id].nil? %>
 			<li class="logbox"><a>
@@ -113,7 +112,7 @@
 
 <!-- wrong credentials message -->
 <div id="login-error">
-	<%=t'login_error'%>
+	wrong username or password
 </div>
 
 </body>

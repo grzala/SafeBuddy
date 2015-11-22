@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :comments
+  post 'comments/create/' => 'comments#create'
 
   get 'police_regions/compare' => 'police_regions#compare'
   get 'police_regions/:id' => 'police_regions#show'
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   
   post 'sessions/create' => 'sessions#create'
   get 'sessions/destroy' => 'sessions#destroy'
+  get 'sessions/locale/:lang' => 'session#change_language'
   
   resources :users
   resources :crimes

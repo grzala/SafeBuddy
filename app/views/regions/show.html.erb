@@ -1,11 +1,11 @@
 <div class="container-fluid" id="main">
 <div class="row">
 	<div class="col-xs-6" id="left">
-		<p>Sumary of crimes in <%= @region.name %> in years 2009-2014</p>
-		<p>The most popular crimes in your region belong to the group: <span id="highest-council"></span></p>
+		<p><%=t'summary'%>: <%= @region.name %> <%=t'in years'%> 2009-2014</p>
+		<p><%=t'most_popular_group'%>: <span id="highest-council"></span></p>
 		<div class="small-pie-chart" id="council"></div>
 		<div class="comments-container">
-			<p>Inform others of any dangers in the region</p>
+			<p><%=t('comment_section')%></p>
 			<div class="comments">
 				<% @comments.each do |comment| %>
 					<div class="comment">
@@ -20,17 +20,17 @@
 						<input type="hidden" name="region-id" value="<%= @region_id %>"/>
 						<input type="hidden" name="user-id" value="<%= session[:user_id] %>"/>
 						<p><textarea id="message-body" name="comment-message"></textarea></p>
-						<p>You have <span id="characters-left">300</span> characters left</p>
-						<p><input type="submit" value="add comment"/></p>
+						<p><%=t'have'%> <span id="characters-left">300</span> <%=t'chars'%></p>
+						<p><input type="submit" value=<%=t('add')%>/></p>
 					</form>
 				</div>
 			<% end %>
 		</div>
 	</div>
 	<div class="col-xs-6">
-		<p>Summary of crimes in <%= @police_region.name %> police region in years 2009-2014</p>
-		<p>The most popular crimes in your region  are: <span id="highest-crime"></span></p>
-		<p>The most popular violent crimes in your region are: <span id="highest-violent"></p>
+		<p><%=t'summary'%> <%= @police_region.name %> <%=t'police region'%> <%=t'in years'%> 2009-2014</p>
+		<p><%=t'most_popular'%>: <span id="highest-crime"></span></p>
+		<p><%=t'most_violent'%>: <span id="highest-violent"></p>
 		<div class="small-pie-chart" id="crimes"></div>
 		<div class="small-pie-chart" id="violent"></div>
 	</div>

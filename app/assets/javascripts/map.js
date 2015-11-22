@@ -76,7 +76,7 @@ function createMap() {
 // Add optional onClick events for features here
 // d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
 function clicked(d,i) {
-	$("#selected-region").text("You have selected: " + gssToRegions[d.properties.gss][0]);
+	$("#selected-region").text(gssToRegions[d.properties.gss][0]);
 	$("#select-region").show();
 	$("#select-region").attr("href", "/regions/"+gssToRegions[d.properties.gss][1]);
 }
