@@ -71,10 +71,10 @@ ActiveRecord::Schema.define(version: 20151121234714) do
     t.string   "email"
     t.string   "hash_password"
     t.string   "salt"
-    t.boolean  "moderator"
+    t.boolean  "moderator",     default: false
     t.integer  "region_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
 end

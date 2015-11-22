@@ -20,4 +20,13 @@ class CommentsController < ApplicationController
 			
 		end	
 	end
+	
+	def destroy
+		@comment = Comment.find(params[:id])
+		@region_id = @comment.region_id
+		if @comment.allowedToEdit(session[:user_id])
+			@comment.destroy
+		end
+		redirect_to "/regions/"+@region_id.to_s
+	end
 end

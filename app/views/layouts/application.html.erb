@@ -61,7 +61,7 @@
 			<li><a href="#" id="send-login-form"><%=t'Login'%></a></li>
 			<li><a href="/users/register" id="register"><%=t'Register'%></a></li>
 		<% else %>
-			<li><a>Hello, <%= User.find(session[:user_id]).name %></a></li>
+			<li><a><%=t'Hello'%>, <%= User.find(session[:user_id]).name %></a></li>
 			<li><a href="/sessions/destroy" id="logout"><%=t'Logout'%></a></li>
 		<% end %>
 	  </ul>

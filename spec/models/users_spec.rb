@@ -13,7 +13,7 @@ describe User, 'methods' do
 	user.save
 	
 	user2 = User.find(user.id)
-	puts user2.name
+	
 	expect(user2).to be
 	expect(user2.name).to eq(username)
 	expect(user2.email).to eq(mail)

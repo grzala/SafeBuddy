@@ -9,6 +9,7 @@ class RegionsController < ApplicationController
 				@police_region = PoliceRegion.find(@police_region_id)
 				
 				@comments = Comment.where(:region_id => @region_id)
+				@comments = @comments.order(date: :desc)
 			}
 			format.js {
 				@region_id = params[:id]

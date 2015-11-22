@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   post 'comments/create/' => 'comments#create'
+  get 'comments/delete/:id' => 'comments#destroy'
 
   get 'police_regions/compare' => 'police_regions#compare'
   get 'police_regions/:id' => 'police_regions#show'

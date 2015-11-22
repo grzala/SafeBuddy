@@ -9,7 +9,10 @@
 			<div class="comments">
 				<% @comments.each do |comment| %>
 					<div class="comment">
-						<p>comment by: <%= User.find(comment.user_id).name %>, at: <%= comment.date %></p>
+						<p>
+							comment by: <%= User.find(comment.user_id).name %>, at: <%= comment.date %>
+							<% if comment.allowedToEdit(session[:user_id]) %><a class="delete-comment-link" data-commentid="<%= comment.id %>" style="cursor: pointer; float: right;"><%=t'delete'%></a><% end %>
+						</p>
 						<p><%= comment.message %></p>
 					</div>					
 				<% end %>
@@ -114,7 +117,7 @@
 				data: params,
 				dataType: "json",
 				success: function(comment) {
-					$(".comments").prepend(
+					$(".comments").append(
 						'<div class="comment">' +
 						'<p>comment by:' + comment.username + ', at: ' + comment.date + "</p><p>" + 
 						comment.message +
@@ -124,6 +127,21 @@
 			});
 			$('#newcomment').find('textarea[name="message[body]"]').val("");
 		}
+	});
+	
+	$(".delete-comment-link").click(function(e) {
+		e.preventDefault();
+		var id = $(this).data("commentid");
+		console.log(id);
+		$.ajax({
+			type: "GET",
+			url: "/comments/delete/" + id,
+			dataType: "json",
+			success: function(x) {
+			}
+		});
+		$(this).parent().parent().remove();
+	});
 	});
 	
 	function validateComment() {
@@ -137,7 +155,5 @@
 		}
 		return true;
 	}
-	
-	});
 	
 </script>

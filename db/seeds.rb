@@ -19,3 +19,7 @@ usr.password = "test2test2"
 usr.email = "test2@test2.com"
 usr.region_id = 3
 usr.save
+
+usr = User.new(:name => "admin", :password => "adminadmin", :email => "a@dmin.com", :moderator => true, :region_id => 3)
+
+usr.save

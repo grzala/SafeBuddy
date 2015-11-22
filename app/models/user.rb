@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 	
 	
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-	validates :email, :presence => true, :uniqueness => {case_sensitive: false}, format: { with: VALID_EMAIL_REGEX }, length: {maximum: 50}
+	validates :email, :presence => true, format: { with: VALID_EMAIL_REGEX }, length: {maximum: 50}
 	
 	
 	validates :password, :confirmation => true, length: {minimum: 6}
@@ -33,9 +33,14 @@ class User < ActiveRecord::Base
 		end
 	end
 	
+	def isMod
+		return self.moderator
+	end
+	
 	private
 	
 	def generate_salt
 		self.salt = self.object_id.to_s + rand.to_s
 	end	
+
 end
