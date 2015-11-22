@@ -3,5 +3,5 @@ When(/^I submit the comment$/) do
 end
 
 Then(/^I should see "(.*?)"$/) do |arg1|
-  expect($session.page).to have_content(arg1)
+  expect($session).to have_content(arg1)
 end

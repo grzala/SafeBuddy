@@ -4,6 +4,28 @@
 		<p>Sumary of crimes in <%= @region.name %> in years 2009-2014</p>
 		<p>The most popular crimes in your region belong to the group: <span id="highest-council"></span></p>
 		<div class="small-pie-chart" id="council"></div>
+		<div class="comments-container">
+			<p>Inform others of any dangers in the region</p>
+			<div class="comments">
+				<% @comments.each do |comment| %>
+					<div class="comment">
+						<p>comment by: <%= User.find(comment.user_id).name %>, at: <%= comment.date %></p>
+						<p><%= comment.message %></p>
+					</div>					
+				<% end %>
+			</div>
+			<% if !session[:user_id].nil? %>
+				<div class="add-comment">
+					<form id="new-comment">
+						<input type="hidden" name="region-id" value="<%= @region_id %>"/>
+						<input type="hidden" name="user-id" value="<%= session[:user_id] %>"/>
+						<p><textarea id="message-body" name="comment-message"></textarea></p>
+						<p>You have <span id="characters-left">300</span> characters left</p>
+						<p><input type="submit" value="add comment"/></p>
+					</form>
+				</div>
+			<% end %>
+		</div>
 	</div>
 	<div class="col-xs-6">
 		<p>Summary of crimes in <%= @police_region.name %> police region in years 2009-2014</p>
@@ -62,6 +84,59 @@
 			$("#highest-violent").text(highest[0]);
 		}
 	});
+	
+	//comments
+	$("#message-body").keyup(function(){
+		var max = 300;
+		var text = $("#message-body").val();
+		len  = text.length 
+		if (len > max) {
+			var newText = "";
+			for (var i = 0; i < max; i++) {
+				newText += text[i];
+			}
+			$("#message-body").val(newText);
+		}
+		$("#characters-left").text(max - $("#message-body").val().length);
+	});
+	
+	$("#new-comment").submit(function(e) {
+		e.preventDefault();
+		if(validateComment()) {
+			var params = {
+				message: $('#new-comment').find('textarea[name="comment-message"]').val(),
+				region_id: $('#new-comment').find('input[name="region-id"]').val(),
+				user_id: $('#new-comment').find('input[name="user-id"]').val(),
+			};
+			$.ajax({
+				type: "POST",
+				url: "/comments/create",
+				data: params,
+				dataType: "json",
+				success: function(comment) {
+					$(".comments").prepend(
+						'<div class="comment">' +
+						'<p>comment by:' + comment.username + ', at: ' + comment.date + "</p><p>" + 
+						comment.message +
+						'</p></div>'
+					);
+				}
+			});
+			$('#newcomment').find('textarea[name="message[body]"]').val("");
+		}
+	});
+	
+	function validateComment() {
+		//validate contact length on submit
+		var max = 300;
+		var text = $("#message-body").val();
+		len = text.length
+		if (len > max || len == 0) {
+			alert("Comment too long or no comment");
+			return false;
+		}
+		return true;
+	}
 	
 	});
 	

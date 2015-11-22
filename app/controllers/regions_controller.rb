@@ -7,6 +7,8 @@ class RegionsController < ApplicationController
 				
 				@police_region_id = @region.police_region_id
 				@police_region = PoliceRegion.find(@police_region_id)
+				
+				@comments = Comment.where(:region_id => @region_id)
 			}
 			format.js {
 				@region_id = params[:id]
