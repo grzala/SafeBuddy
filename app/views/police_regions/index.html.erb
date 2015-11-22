@@ -1,5 +1,5 @@
 <div class="row"><div class="list">
-<p>Select a region</p>
+<p><%=t'select_region'%></p>
 <ul>
 	<% @regions.each do |region| %>
 		<li><a style="color:black;" href=<%= "/police_regions/"+region.id.to_s %>><%= region.name %></a></li>

@@ -1,6 +1,6 @@
 <div class="region-statistics-container">
 	<div id="datasets">
-		<p>Years: 2009-2014</p>
+		<p><%=t('years').capitalize%>: 2009-2014</p>
 		<div class="column-chart" id="Non-sexualcrimesofviolence"></div>
 		<div class="column-chart" id="Sexualoffences"></div>
 		<div class="column-chart" id="Crimesofdishonesty"></div>
@@ -20,13 +20,13 @@
 		url: "/police_regions/all",
 		dataType: "json",
 		success: function(crimes) {
-			createCompareColumnChart(crimes, "Non-sexual crimes of violence");
-			createCompareColumnChart(crimes, "Sexual offences");
-			createCompareColumnChart(crimes, "Crimes of dishonesty");
-			createCompareColumnChart(crimes, "Fire-raising, vandalism etc.");
-			createCompareColumnChart(crimes, "Other crimes");
-			createCompareColumnChart(crimes, "Miscellaneous offences");
-			createCompareColumnChart(crimes, "Motor vehicle offences");
+			createCompareColumnChart(crimes, "Non-sexual crimes of violence", translate);
+			createCompareColumnChart(crimes, "Sexual offences", translate);
+			createCompareColumnChart(crimes, "Crimes of dishonesty", translate);
+			createCompareColumnChart(crimes, "Fire-raising, vandalism etc.", translate);
+			createCompareColumnChart(crimes, "Other crimes", translate);
+			createCompareColumnChart(crimes, "Miscellaneous offences", translate);
+			createCompareColumnChart(crimes, "Motor vehicle offences", translate);
 		}
 	});
 	

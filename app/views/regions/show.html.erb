@@ -51,14 +51,14 @@
 		url: "/regions/"+regionId,
 		dataType: "json",
 		success: function(crimes) {
-			var newCrimes = createCrimesCouncilPieChart(crimes);
+			var newCrimes = createCrimesCouncilPieChart(crimes, translate);
 			
 			//get highest
 			var highest = ["", 0];
 			for (group in newCrimes) {
 				if (newCrimes[group] > highest[1]) highest = [group, newCrimes[group]];
 			}
-			$("#highest-council").text(highest[0]);
+			$("#highest-council").text(translate[highest[0]]);
 		}
 	});
 	
@@ -67,21 +67,21 @@
 		url: "/police_regions/"+policeRegionId,
 		dataType: "json",
 		success: function(crimes) {
-			var newCrimes = createCrimesRegionPieChart(crimes, "all");
-			var newViolentCrimes = createViolentRegionPieChart(crimes, "all");
+			var newCrimes = createCrimesRegionPieChart(crimes, "all", translate);
+			var newViolentCrimes = createViolentRegionPieChart(crimes, "all", translate);
 			
 			//get highest
 			var highest = ["", 0];
 			for (index in newCrimes) {
 				if (newCrimes[index].y > highest[1]) highest = [newCrimes[index].name, newCrimes[index].y];
 			}
-			$("#highest-crime").text(highest[0]);
+			$("#highest-crime").text(translate[highest[0]]);
 			
 			highest = ["", 0];
 			for (index in newViolentCrimes) {
 				if (newViolentCrimes[index].y > highest[1]) highest = [newViolentCrimes[index].name, newViolentCrimes[index].y];
 			}
-			$("#highest-violent").text(highest[0]);
+			$("#highest-violent").text(translate[highest[0]]);
 		}
 	});
 	

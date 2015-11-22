@@ -2,9 +2,9 @@
 	<p>
 		Select dataset:
 		<select class="dataset-selection">
-			<option selected value="c&o period">Crimes and offences 2009-2014</option>
-			<option value="c&o 2014">Crimes and offences 2014</option>
-			<option value="c&o comparison">Crimes and offences comparison over years</option>
+			<option selected value="c&o period"><%=t'Crimes and Offences'%> 2009-2014</option>
+			<option value="c&o 2014"><%=t'Crimes and Offences'%> 2014</option>
+			<option value="c&o comparison"><%=t'Crimes and Offences'%> <%=t'comparison'%> over years</option>
 		</select>
 	</p>
 
@@ -45,13 +45,13 @@
 							'<div class="column-chart" id="Miscellaneousoffences"></div>'+
 							'<div class="column-chart" id="Motorvehicleoffences"></div>'+
 						'');
-						createCrimesAndOffencesRegionColumnChart(crimes, "Non-sexual crimes of violence");
-						createCrimesAndOffencesRegionColumnChart(crimes, "Sexual offences");
-						createCrimesAndOffencesRegionColumnChart(crimes, "Crimes of dishonesty");
-						createCrimesAndOffencesRegionColumnChart(crimes, "Fire-raising, vandalism etc.");
-						createCrimesAndOffencesRegionColumnChart(crimes, "Other crimes");
-						createCrimesAndOffencesRegionColumnChart(crimes, "Miscellaneous offences");
-						createCrimesAndOffencesRegionColumnChart(crimes, "Motor vehicle offences");
+						createCrimesAndOffencesRegionColumnChart(crimes, "Non-sexual crimes of violence", translate);
+						createCrimesAndOffencesRegionColumnChart(crimes, "Sexual offences", translate);
+						createCrimesAndOffencesRegionColumnChart(crimes, "Crimes of dishonesty", translate);
+						createCrimesAndOffencesRegionColumnChart(crimes, "Fire-raising, vandalism etc.", translate);
+						createCrimesAndOffencesRegionColumnChart(crimes, "Other crimes", translate);
+						createCrimesAndOffencesRegionColumnChart(crimes, "Miscellaneous offences", translate);
+						createCrimesAndOffencesRegionColumnChart(crimes, "Motor vehicle offences", translate);
 						
 						break;
 					case "c&o period":
@@ -60,9 +60,9 @@
 							'<div class="pie-chart" id="crimes"></div>'+
 							'<div class="pie-chart" id="violent"></div>'
 						);
-						createCrimesAndOffencesRegionPieChart(crimes, "all");
-						createCrimesRegionPieChart(crimes, "all");
-						createViolentRegionPieChart(crimes, "all");
+						createCrimesAndOffencesRegionPieChart(crimes, "all", translate);
+						createCrimesRegionPieChart(crimes, "all", translate);
+						createViolentRegionPieChart(crimes, "all", translate);
 						break;
 					case "c&o 2014":
 						container.append(''+
@@ -70,9 +70,9 @@
 							'<div class="pie-chart" id="crimes"></div>'+
 							'<div class="pie-chart" id="violent"></div>'
 						);
-						createCrimesAndOffencesRegionPieChart(crimes, 2014);
-						createCrimesRegionPieChart(crimes, 2014);
-						createViolentRegionPieChart(crimes, 2014);
+						createCrimesAndOffencesRegionPieChart(crimes, 2014, translate);
+						createCrimesRegionPieChart(crimes, 2014, translate);
+						createViolentRegionPieChart(crimes, 2014, translate);
 						break;
 					default:
 						console.log("something went wrong");

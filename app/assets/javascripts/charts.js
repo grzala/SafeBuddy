@@ -1,5 +1,5 @@
-function createCompareColumnChart(crimes, group) {
-	var title = "Comparison of "+group+" in all police regions";
+function createCompareColumnChart(crimes, group, translate) {
+	var title = translate["Comparison of"]+" "+translate[group]+" "+translate["in all police regions"];
 	var regions = [];
 	var categories = [];
 	var data = {};
@@ -29,10 +29,10 @@ function createCompareColumnChart(crimes, group) {
 	
 	for (var key in data) {
 		seriesData.push({
-			name: key,
+			name: translate[key],
 			data: data[key]
 		});
-	}
+	}1
 
 	$('#'+group.replace(/[\s,.]/g, "")).highcharts({
         chart: {
@@ -70,9 +70,9 @@ function createCompareColumnChart(crimes, group) {
 
 }
 
-function createCrimesCouncilPieChart(crimes) {
+function createCrimesCouncilPieChart(crimes, translate) {
 	
-	var title = "Crimes in: "+crimes[0].region;
+	var title = translate["Crimes in"]+": "+crimes[0].region;
 	var data = []
 	
 	//clash years
@@ -86,7 +86,7 @@ function createCrimesCouncilPieChart(crimes) {
 	
 	for (var group in newCrimes) {
 		data.push({
-			name: group,
+			name: translate[group],
 			y: newCrimes[group]
 		});
 	}
@@ -131,7 +131,7 @@ function createCrimesCouncilPieChart(crimes) {
 function createCrimesAndOffencesRegionColumnChart(crimes, group) {
 	
 	//adjust title
-	var title = group+" in: "+crimes[0].region;
+	var title = translate[group]+" "+translate["in"]+": "+crimes[0].region;
 	if(window.id == "all") {
 		title = title.split(" ");
 		title.splice(title.length-1, 1);
@@ -184,7 +184,7 @@ function createCrimesAndOffencesRegionColumnChart(crimes, group) {
 			drilldowns[y].push(drilldown);
 		}
 	} 
-	
+
 	for (key in sums) {
 		mainData.push({
 			name: key,
@@ -194,10 +194,14 @@ function createCrimesAndOffencesRegionColumnChart(crimes, group) {
 	}
 	
 	for (key in drilldowns) {
+		var dd = drilldowns[key];
+		for (d in dd) {
+			dd[d][0] = translate[dd[d][0]];
+		}
 		drilldownData.push({
 			name: key,
 			id: key,
-			data: drilldowns[key]
+			data: dd
 		});
 	}
 	
@@ -210,14 +214,14 @@ function createCrimesAndOffencesRegionColumnChart(crimes, group) {
             text: title
         },
         subtitle: {
-			text: 'Click on a column to see more details'
+			text: translate["column_details"]
 		},
         xAxis: {
             type: 'category'
         },
         yAxis: {
 			title: {
-				text: 'Total crimes'
+				text: translate["total"]
 			}
 		},
 
@@ -235,7 +239,7 @@ function createCrimesAndOffencesRegionColumnChart(crimes, group) {
         },
 
         series: [{
-            name: group,
+            name: translate[group],
             colorByPoint: true,
             data: mainData
         }],
@@ -245,26 +249,26 @@ function createCrimesAndOffencesRegionColumnChart(crimes, group) {
     });
 }
 
-function createCrimesRegionPieChart(crimes, year) {
+function createCrimesRegionPieChart(crimes, year, translate) {
 	var newCrimes = [];
 	var len = crimes.length;
 	for (var i = 0; i < len; i++) {
 		if (crimes[i].group != "Motor vehicle offences" && crimes[i].group != "Miscellaneous offences") newCrimes.push(crimes[i]);
 	}
-	return createRegionPieChart(newCrimes, "Crimes in: ", "crimes", 100, year);
+	return createRegionPieChart(newCrimes, translate["Crimes in"]+": ", "crimes", 100, year, translate);
 }
 
-function createCrimesAndOffencesRegionPieChart(crimes, year)  {
-	return createRegionPieChart(crimes, "Crimes and Offences in: ", "crimes-and-offences", 200, year);
+function createCrimesAndOffencesRegionPieChart(crimes, year, translate)  {
+	return createRegionPieChart(crimes, translate["Crimes and Offences in"]+": ", "crimes-and-offences", 200, year, translate);
 }
 
-function createViolentRegionPieChart(crimes, year)  {
+function createViolentRegionPieChart(crimes, year, translate) {
 	var newCrimes = [];
 	var len = crimes.length;
 	for (var i = 0; i < len; i++) {
 		if (crimes[i].group == "Non-sexual crimes of violence" || crimes[i].group == "Sexual offences") newCrimes.push(crimes[i]);
 	}
-	return createRegionPieChart(newCrimes, "Violent crimes in: ", "violent", 0, year);
+	return createRegionPieChart(newCrimes, translate["Violent crimes in"]+": ", "violent", 0, year, translate);
 }
 
 function createRegionPieChart(crimes, title, id, limitLow, year) {
@@ -330,7 +334,7 @@ function createRegionPieChart(crimes, title, id, limitLow, year) {
 
 		// add main data
 		crimeData.push({
-			name: categories[i],
+			name: translate[categories[i]],
 			y: data[i].y,
 			color: data[i].color
 		});
@@ -340,7 +344,7 @@ function createRegionPieChart(crimes, title, id, limitLow, year) {
 		for (var j = 0; j < drillDataLen; j++) {
 			var brightness = 0.2 - (j / drillDataLen) / 5;
 			drilldownsData.push({
-				name: data[i].drilldown.categories[j],
+				name: translate[data[i].drilldown.categories[j]],
 				y: data[i].drilldown.data[j],
 				color: Highcharts.Color(data[i].color).brighten(brightness).get()
 			});
@@ -352,7 +356,7 @@ function createRegionPieChart(crimes, title, id, limitLow, year) {
 	if(window.id == "all") {
 		title = title.split(" ");
 		title.splice(title.length-1, 1);
-		title = title.join(" ")+" Scotland";
+		title = title.join(" ")+" "+translate["Scotland"];
 	}
 
 	// Create the chart
