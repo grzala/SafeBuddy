@@ -5,6 +5,7 @@ class CreateNews < ActiveRecord::Migration
       t.text :paragraph
       t.date :date
       t.string :url
+      t.string :src
 
       t.timestamps null: false
     end
