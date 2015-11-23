@@ -10,9 +10,9 @@
 </div>
 </div>
 <div class="articles">
-	<h5>Articles on scottish crime</h5>
-	<div>
-		<p>please wait while the articles are loading</p>
+	<h5><%=t'Articles on scottish crime'%></h5>
+	<div class="list">
+		<p><%=t'wait'%></p>
 	<div>
 <div>
 
@@ -30,10 +30,12 @@
 				container.empty();
 				
 				for (var i in news) {
-					container.append("<div class=\"article\"");
-					container.append("<h6>"+news[i].title+"</h6>");					
-					container.append("<p>"+news[i].paragraph+" Read more on: "+news[i].src+</p>");	
-					container.append("</div>");				
+					var article = "";
+					article += '<div class="article">';
+					article += '<h6><a href="'+news[i].url+'">'+news[i].title+"</a></h6>";					
+					article += "<p>"+news[i].paragraph+'<a href="'+news[i].url+'">'+" Read more on: "+news[i].src+"</a></p>";	
+					article += "</div>";		
+					container.append(article);	
 				}
 			}
 		});

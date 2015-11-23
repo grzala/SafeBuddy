@@ -74,7 +74,31 @@
 	margin: 3px 0px
 }
 
-.articles div {
+.article h6, .article h6 a {
+	font-weight: bold;
+	color: black;
+	text-decoration: underline;
+}
+
+.article p {
+	margin-top: 0px;
+	font-size: 10px;
+	
+	text-align: justify;
+	text-justify: inter-word;
+}
+
+.article a {
+	text-decoration: underline;
+}
+
+.article {
+	padding: 0px 3px;
+}
+
+.articles .list {
+	padding: 0px 2px;
+	width: 98%;
 	height: 220px;
 	overflow: auto;
 	background-color: white;
