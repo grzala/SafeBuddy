@@ -83,9 +83,33 @@ class News < ActiveRecord::Base
 			
 			newest = date if !short
 			
-		end
+		end	
+		
+		#the scotsman
+		page = Nokogiri::HTML(open("http://www.scotsman.com/search?query=crime&p=header"))
+		page.css(".search-result-item").each do |article|
+			
+			title = article.at_css("a")
+			url = title.attribute("href").value
+			
+			next if !Nokogiri::HTML(open(url)).at_css("span.timestamp__date")
+			
+			date = DateTime.parse(Nokogiri::HTML(open(url)).at_css("span.timestamp__date").text)
+			
+			break if date <= newest
+			articles.push({})	
+			
+			paragraph = Nokogiri::HTML(open(url)).at_css(".article__lead").text
 
-		puts articles
+			articles.last[:title] = (title.text)
+			articles.last[:url] = (url)
+			articles.last[:date] = (date)
+			articles.last[:paragraph] = (paragraph)
+			articles.last[:src] = ("The scotsman")
+			
+			newest = date if !short
+			
+		end
 		
 		articles.each do |article|
 			news = News.new(article)
