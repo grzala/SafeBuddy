@@ -6,6 +6,18 @@ class ApplicationController < ActionController::Base
   def index
   end
   
+  def get_articles
+	respond_to do |f|
+		f.js {
+			News.scrape
+			@news = News.all.order(:date => :desc)
+			@news = @news[0..3]
+			
+			render json: @news
+		}	
+	end
+  end
+  
   def adjust_lang
 	if session[:language] == "en" || session[:language].nil?
 		I18n.locale = :en

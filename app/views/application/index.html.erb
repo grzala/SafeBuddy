@@ -1,18 +1,41 @@
 <%= stylesheet_link_tag 'map' %>
 <div class="container-fluid" id="main">
 <div class="row">
-	<div class="col-xs-6" id="left">
+	<div class="col-xs-5" id="left">
 		<div id="map-container"></div>
 	</div>
-	<div class="col-xs-4">
+	<div class="col-xs-5">
 		<p class="main-info"><%=t'main'%>&nbsp;<a href="" id="select-region" style="display: none"><span id="selected-region">Please select region</span></a></p>
 	</div>
 </div>
 </div>
+<div class="articles">
+	<h5>Articles on scottish crime</h5>
+	<div>
+		<p>please wait while the articles are loading</p>
+	<div>
+<div>
 
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		createMap();
+		
+		$.ajax({
+			type: "GET",
+			url: "/get_articles",
+			dataType: "json",
+			success: function(news) {
+				var container = $(".articles div");
+				container.empty();
+				
+				for (var i in news) {
+					container.append("<div class=\"article\"");
+					container.append("<h6>"+news[i].title+"</h6>");					
+					container.append("<p>"+news[i].paragraph+" Read more on: "+news[i].src+</p>");	
+					container.append("</div>");				
+				}
+			}
+		});
 	});
 </script>

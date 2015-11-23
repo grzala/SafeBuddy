@@ -1,6 +1,4 @@
 class News < ActiveRecord::Base
-
-
 	def self.scrape
 	
 		newest = Time.now

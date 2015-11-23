@@ -51,3 +51,31 @@
 	width: 22px;
 	height: 15px;
 }
+
+.articles {
+	font-size: 12px;
+	
+	background-color: #89A5F2;
+	padding: 0px 2px 0px 2px;
+	border: 1px solid #E7E7E7;
+	border-radius: 7px 7px 2px 2px;
+	
+	width: 200px;
+	height: 250px;
+	z-index: 100;
+	
+	position: fixed;
+	right: 5px;
+	bottom: 0px;
+}
+
+.articles h5 {
+	text-align: center;
+	margin: 3px 0px
+}
+
+.articles div {
+	height: 220px;
+	overflow: auto;
+	background-color: white;
+}
