@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20151123143859) do
   create_table "news", force: :cascade do |t|
     t.string   "title"
     t.text     "paragraph"
-    t.date     "date"
+    t.datetime "date"
     t.string   "url"
     t.string   "src"
     t.datetime "created_at", null: false
