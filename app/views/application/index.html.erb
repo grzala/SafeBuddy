@@ -21,7 +21,7 @@
 	$(document).ready(function() {
 		createMap();
 		
-		$.ajax({
+		var request = $.ajax({
 			type: "GET",
 			url: "/get_articles",
 			dataType: "json",
@@ -39,5 +39,6 @@
 				}
 			}
 		});
+		
 	});
 </script>

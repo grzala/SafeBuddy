@@ -15,5 +15,10 @@ usr.save
 usr = User.new(:name => "admin", :password => "adminadmin", :email => "a@dmin.com", :moderator => true, :region_id => 3)
 usr.save
 
+time = LastUpdated.new(:time => 0)
+time.save
+
 puts "Scraping atricles, this might take a while. Please do not interrupt the process"
 News.scrape
+
+

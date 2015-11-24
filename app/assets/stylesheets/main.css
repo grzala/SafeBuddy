@@ -76,6 +76,7 @@
 
 .article h6, .article h6 a {
 	font-weight: bold;
+	font-size: 11px;
 	color: black;
 	text-decoration: underline;
 }

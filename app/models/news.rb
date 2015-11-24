@@ -1,6 +1,14 @@
 class News < ActiveRecord::Base
-	def self.scrape
 	
+	def self.scrape
+		
+		if last_updated = LastUpdated.first.time
+			time_dif = ((Time.now - last_updated).to_i / 3600)# in hours
+			puts time_dif
+			
+			return if time_dif < 24
+		end
+		
 		newest = Time.now
 		short = false
 		if News.all.length < 4
@@ -20,6 +28,8 @@ class News < ActiveRecord::Base
 			title = article.css("h1 a")
 			url = title.attribute("href").value
 			date = DateTime.parse(article.css("time").attribute("datetime").value)
+			
+			puts url
 			
 			break if date <= newest
 			articles.push({})
@@ -46,6 +56,8 @@ class News < ActiveRecord::Base
 			url = title.attribute("href").value
 			date = DateTime.parse(article.css("time").attribute("datetime").value)
 			
+			puts url
+			
 			break if date <= newest
 			articles.push({})
 			
@@ -69,6 +81,8 @@ class News < ActiveRecord::Base
 			title = article.css("h3 a")
 			url = title.attribute("href").value
 			date = DateTime.parse(article.css("time").attribute("datetime").value)
+			
+			puts url
 			
 			break if date <= newest
 			articles.push({})
@@ -96,6 +110,8 @@ class News < ActiveRecord::Base
 			
 			date = DateTime.parse(Nokogiri::HTML(open(url)).at_css("span.timestamp__date").text)
 			
+			puts url
+			
 			break if date <= newest
 			articles.push({})	
 			
@@ -115,6 +131,11 @@ class News < ActiveRecord::Base
 			news = News.new(article)
 			news.save
 		end
-
+		
+		last_updated = LastUpdated.first
+		last_updated.time = Time.now
+		last_updated.save
+		
 	end
+
 end
