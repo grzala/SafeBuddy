@@ -28,7 +28,7 @@ en:
     by: "by"
     
 #main
-    main: "Welcome to SafeBuddy. Here, you can choose a region you live in and see which crimes you should be most cautious of. Create an account in order to give advice to other users about safety in your region. Click on the map to select a region now: "
+    main: "Welcome to SafeBuddy. Here, you can choose a region you live in and see which crimes you should be most cautious of. Please note that statistics for regions (council regions) and statistics for police regions may and should vary. Create an account in order to give advice to other users about safety in your region. Click on the map to select a region now: "
     summary: "Summary of crimes on region"
     in years: "In years"
     most_popular_group: "Most popular crimes in your region belong to the group"

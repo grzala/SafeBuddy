@@ -1,0 +1,17 @@
+.search-results {
+	margin-left: 10px;
+	width: 40%
+}
+
+.search-result {
+	margin-left: 10px;
+	margin-bottom: 15px;
+}
+
+.search-result p, .search-result a {
+	margin-bottom: 2px;
+}
+
+.search-result .author, .search-result .title {
+	font-weight: bold;
+}
