@@ -1,3 +1,7 @@
+<!-- topojson -->  
+<script type="text/javascript" src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://d3js.org/topojson.v1.min.js"></script>
+
 <%= stylesheet_link_tag 'map' %>
 <div class="container-fluid" id="main">
 <div class="row">
@@ -32,7 +36,7 @@
 				for (var i in news) {
 					var article = "";
 					article += '<div class="article">';
-					article += '<h6><a href="'+news[i].url+'">'+news[i].title+"</a></h6>";					
+					article += '<h6><a href="'+news[i].url+'">'+news[i].title+"</a></h6>"	;				
 					article += "<p>"+news[i].paragraph+'<a href="'+news[i].url+'">'+" Read more on: "+news[i].src+"</a></p>";	
 					article += "</div>";		
 					container.append(article);	
@@ -42,3 +46,4 @@
 		
 	});
 </script>
+
