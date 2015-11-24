@@ -35,6 +35,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #for webscraping
 gem 'nokogiri'
 
+#for searching
+gem 'sunspot'
+
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 

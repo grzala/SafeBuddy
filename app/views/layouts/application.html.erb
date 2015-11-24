@@ -5,10 +5,12 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <!-- bootstrap -->
+  <!-- bootstrap is now linked in application.scss -->
   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">-->
 </head>
 <body>
+	
+<!-- javascript localization -->
 <%= javascript_tag do %>
   window.translate = <%= I18n.backend.send(:translations).to_json.html_safe %>
   if ("<%=session[:language]%>" == "en" || "<%=session[:language]%>" == "") {
@@ -17,6 +19,7 @@
 	translate = translate["pl"]
   }
 <% end %>
+
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
@@ -89,10 +92,10 @@
 			data: params,
 			dataType: "json",
 			success: function(authenticated) {
-				console.log(authenticated);
 				if(authenticated.name != undefined) {
 					location.replace("/regions/"+authenticated.region_id);
 				} else {
+					console.log("not");
 					$("#login-error").show().delay(3000).fadeOut(1000);
 				}
 			}
