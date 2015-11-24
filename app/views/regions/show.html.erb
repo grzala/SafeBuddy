@@ -5,7 +5,7 @@
 		<p><%=t'most_popular_group'%>: <span id="highest-council"></span></p>
 		<div class="small-pie-chart" id="council"></div>
 		<div class="comments-container">
-			<p><%=t('comment_section')%></p>
+			<% unless session[:user_id].nil? %><p><%=t('comment_section')%></p><% end %>
 			<div class="comments">
 				<% @comments.each do |comment| %>
 					<div class="comment">
@@ -119,13 +119,13 @@
 				success: function(comment) {
 					$(".comments").append(
 						'<div class="comment">' +
-						'<p>comment by:' + comment.username + ', at: ' + comment.date + "</p><p>" + 
+						'<p>comment by: ' + comment.username + ', at: ' + comment.date + "</p><p>" + 
 						comment.message +
 						'</p></div>'
 					);
 				}
 			});
-			$('#newcomment').find('textarea[name="message[body]"]').val("");
+			$('#new-comment').find('textarea[name="comment-message"]').val("");
 		}
 	});
 	

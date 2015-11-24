@@ -22,7 +22,9 @@ class News < ActiveRecord::Base
 
 		#bbc
 		page = Nokogiri::HTML(open("http://www.bbc.co.uk/search?q=scotland+crime&filter=news&suggid="))
-		page.css(".media-text").each do |article|
+		page_articles = page.css(".media-text")
+		page_articles.length < 4 ? page_articles = page_articles[0..page_articles.length] : page_articles = page_articles[0...4]
+		page_articles.each do |article|
 			
 			
 			title = article.css("h1 a")
@@ -49,7 +51,9 @@ class News < ActiveRecord::Base
 		
 		#the daily record
 		page = Nokogiri::HTML(open("http://www.dailyrecord.co.uk/search/simple.do?destinationSectionId=3156&publicationName=dailyrecord&sortString=publishdate&sortOrder=desc&sectionId=3151&articleTypes=+news+opinion+advice&pageNumber=1&pageLength=5&searchString=crime+scotland"))
-		page.css(".article").each do |article|
+		page_articles = page.css(".article")
+		page_articles.length < 4 ? page_articles = page_articles[0..page_articles.length] : page_articles = page_articles[0...4]
+		page_articles.each do |article|
 			
 			
 			title = article.css("h3 a")
@@ -76,7 +80,9 @@ class News < ActiveRecord::Base
 
 		#the mirror
 		page = Nokogiri::HTML(open("http://www.mirror.co.uk/search/simple.do?destinationSectionId=219&publicationName=mirror&sortString=publishdate&sortOrder=desc&sectionId=69&articleTypes=+news+opinion+advice&pageNumber=1&pageLength=5&searchString=crime+scotland"))
-		page.css(".article").each do |article|
+		page_articles = page.css(".article")
+		page_articles.length < 4 ? page_articles = page_articles[0..page_articles.length] : page_articles = page_articles[0...4]
+		page_articles.each do |article|
 			
 			title = article.css("h3 a")
 			url = title.attribute("href").value
@@ -101,7 +107,9 @@ class News < ActiveRecord::Base
 		
 		#the scotsman
 		page = Nokogiri::HTML(open("http://www.scotsman.com/search?query=crime&p=header"))
-		page.css(".search-result-item").each do |article|
+		page_articles = page.css(".search-result-item")
+		page_articles.length < 4 ? page_articles = page_articles[0..page_articles.length] : page_articles = page_articles[0...4]
+		page_articles.each do |article|
 			
 			title = article.at_css("a")
 			url = title.attribute("href").value

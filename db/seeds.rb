@@ -18,7 +18,7 @@ usr.save
 time = LastUpdated.new(:time => 0)
 time.save
 
-puts "Scraping atricles, this might take a while. Please do not interrupt the process"
+puts "Scraping articles, this might take a while. Please do not interrupt the process"
 News.scrape
 
 
