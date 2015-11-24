@@ -1,5 +1,5 @@
 When(/^I submit the comment$/) do
-	$session.click_button("add comment")
+	$session.click_button("add")
 end
 
 Then(/^I should see "(.*?)"$/) do |arg1|

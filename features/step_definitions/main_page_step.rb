@@ -32,3 +32,8 @@ Then(/^I should see the logbox$/) do
   expect($session).to have_content("password");
 end
 
+When(/^I submit the search$/) do
+  $session.click_button("submit-search")
+end
+
+

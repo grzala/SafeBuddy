@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
   end
   
   def search
+	@searchphrase = params[:search_query]
+	
+	@comments = Comment.search(@searchphrase)
   
   end
   

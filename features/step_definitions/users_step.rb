@@ -1,13 +1,13 @@
 When(/^I click register$/) do
-  $session.click_link("register");
+  $session.click_link("Register");
 end
 
-When(/^fill in "(.*?)" with "(.*?)"$/) do |input, value|
+When(/^I fill in "(.*?)" with "(.*?)"$/) do |input, value|
   $session.fill_in(input, :with => value)
 end
 
 When(/^submit register form$/) do
-  $session.click_button("register")
+  $session.click_button("Register")
 end
 
 Then(/^I should see the welcome message for "(.*?)"$/) do |usr|

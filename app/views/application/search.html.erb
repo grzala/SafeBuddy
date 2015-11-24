@@ -1,0 +1,21 @@
+<div class="row">
+<div class="comments-search-results">
+	Results for: <%= @searchphrase %>
+	<h4>Comments:</h4>
+	<% unless @comments.nil? %>
+		<% @comments.each do |comment| %>
+			<p><%= comment.message %></p>
+		
+		<% end %>
+	<% else %>
+		<p>No Results</p>
+	<% end %>
+	
+</div>
+<div class="articles-search-results">
+	<h4>Articles:</h4>
+	
+	
+	
+</div>
+</div>

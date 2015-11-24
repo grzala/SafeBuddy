@@ -45,6 +45,8 @@ class Comment < ActiveRecord::Base
 		end
 		results = new_results
 		
+		return nil if results.length == 0
+		
 		return results
 	end
 end
