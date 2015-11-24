@@ -15,4 +15,12 @@ class Comment < ActiveRecord::Base
 		
 		return false
 	end
+	
+	def self.search(search)
+		results = []
+		
+		#perform search
+		
+		return results	
+	end
 end
