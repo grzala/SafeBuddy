@@ -145,5 +145,35 @@ class News < ActiveRecord::Base
 		last_updated.save
 		
 	end
+	
+	def self.search(search)
+		results = []
+		
+		#find by paragraph
+		News.where('paragraph LIKE ?', '%' + search + '%').each do |n|
+			results.push n
+		end
+		
+		#find by title
+		News.where('title LIKE ?', '%' + search + '%').each do |n|
+			results.push n
+		end
+		
+		#find by source
+		News.where('src LIKE ?', '%' + search + '%').each do |n|
+			results.push n
+		end
+		
+		#double entry check
+		new_results = []
+		results.each do |r|
+			new_results.push r unless new_results.include?(r)
+		end
+		results = new_results
+		
+		return nil if results.length == 0
+		
+		return results
+	end
 
 end

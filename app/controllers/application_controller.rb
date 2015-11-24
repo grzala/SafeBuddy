@@ -8,9 +8,8 @@ class ApplicationController < ActionController::Base
   
   def search
 	@searchphrase = params[:search_query]
-	
 	@comments = Comment.search(@searchphrase)
-  
+	@articles = News.search(@searchphrase)
   end
   
   def get_articles

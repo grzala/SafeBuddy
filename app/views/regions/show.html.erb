@@ -10,7 +10,7 @@
 				<% @comments.each do |comment| %>
 					<div class="comment">
 						<p>
-							comment by: <%= User.find(comment.user_id).name %>, at: <%= comment.date %>
+							<%=t('comment').capitalize%> <%=t'by'%>: <%= User.find(comment.user_id).name %>, at: <%= comment.date %>
 							<% if comment.allowedToEdit(session[:user_id]) %><a class="delete-comment-link" data-commentid="<%= comment.id %>" style="cursor: pointer; float: right;"><%=t'delete'%></a><% end %>
 						</p>
 						<p><%= comment.message %></p>

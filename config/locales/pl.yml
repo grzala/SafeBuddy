@@ -21,6 +21,11 @@ pl:
     delete: "usuń"
     over years: "podczas ostatnich lat"
     search: "wyszukaj"
+    Results for: "Wyniki dla"
+    comments: "komentarze"
+    comment: "komentarz"
+    articles: "artykuły"
+    by: "napisany przez"
     
 #main
     main: "Witaj w SafeBuddy. Wybierz region w którym mieszkasz i sprawdź, jakich przestępsw możesz się spodziewać i obawiać w swojej okolicy. Załóż konto, by przestrzegać innych o niebezpieczeństwach w twoim regionie. Kliknij na mapy aby wybrać region:"
@@ -98,3 +103,9 @@ pl:
     shortpass_error: "Hasło musi być dłuższe niż 6 znaków"
     email_error: "Adres email musi mieć strukturę 'email@server.com'"
     username_error: "Nazwa użytkownika jest już zajęta"
+    
+#search
+    content: "zawartość"
+    comment-origin: "Naciśnij tu aby zobaczyć źródło komentarza"
+    title: "tytuł"
+    more: "Kliknij aby przeczytać więcej"

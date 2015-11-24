@@ -1,10 +1,14 @@
 <div class="row">
-<div class="comments-search-results">
-	Results for: <%= @searchphrase %>
-	<h4>Comments:</h4>
+<div class="comments-search-results search-results">
+	<%=t'Results for'%>: <%= @searchphrase %>
+	<h4><%=t('comments').capitalize%>:</h4>
 	<% unless @comments.nil? %>
 		<% @comments.each do |comment| %>
-			<p><%= comment.message %></p>
+			<div class="comment-search-result">
+				<p class="author"><%=t('by').capitalize%>: <%= User.find(comment.user_id).name %></p>
+				<p><%=t('content').capitalize%>: <%= comment.message %></p>
+				<a href="/regions/<%=comment.region_id%>"><%=t('comment-origin')%></a>
+			</div>
 		
 		<% end %>
 	<% else %>
@@ -12,10 +16,18 @@
 	<% end %>
 	
 </div>
-<div class="articles-search-results">
-	<h4>Articles:</h4>
-	
-	
-	
+<div class="articles-search-results search-results">
+	<h4><%=t('articles').capitalize%>:</h4>
+	<% unless @articles.nil? %>
+		<% @articles.each do |article| %>
+			<div class="article-search-result">
+				<p class="title"><%=t('title').capitalize%>: <%= article.title %></p>
+				<p class="paragraph"><%=t('content').capitalize%>: <%= article.paragraph %></p>
+				<a href="<%=article.url%>"><%=t'more'%></a>		
+			<div>
+		<% end %>
+	<% else %>
+		<p>No Results</p>
+	<% end %>
 </div>
 </div>

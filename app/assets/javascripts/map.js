@@ -35,8 +35,8 @@ var gssToRegions = {
 
 function createMap() {
 	//Map dimensions (in pixels) 
-	var width = $("#map-container").width(),
-		height = $("#map-container").height(); // preferable 500, 600
+	var width = 325
+		height = 600
 
 	//Map projection
 	var projection = d3.geo.conicEqualArea()

@@ -21,6 +21,11 @@ en:
     delete: "delete"
     over years: "over years"
     search: "search"
+    Results for: "Results for"
+    comments: "comments"
+    comment: "comment"
+    articles: "articles"
+    by: "by"
     
 #main
     main: "Welcome to SafeBuddy. Here, you can choose a region you live in and see which crimes you should be most cautious of. Create an account in order to give advice to other users about safety in your region. Click on the map to select a region now: "
@@ -98,3 +103,9 @@ en:
     shortpass_error: "password must be at least 6 characters long"
     email_error: "the email must follow structure 'email@server.com'"
     username_error: "the username is already taken"
+    
+#search
+    content: "content"
+    comment-origin: "Click here to see where comment originated"
+    title: "title"
+    more: "Read more by clicking here"
