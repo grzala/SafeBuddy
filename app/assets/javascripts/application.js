@@ -15,3 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+//= require d3
+//= require d3_topojson
+//= require highcharts
+//= require highcharts_drilldowns

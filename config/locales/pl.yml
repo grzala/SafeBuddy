@@ -20,6 +20,7 @@ pl:
     confirm: "potwierdź"
     delete: "usuń"
     over years: "podczas ostatnich lat"
+    search: "wyszukaj"
     
 #main
     main: "Witaj w SafeBuddy. Wybierz region w którym mieszkasz i sprawdź, jakich przestępsw możesz się spodziewać i obawiać w swojej okolicy. Załóż konto, by przestrzegać innych o niebezpieczeństwach w twoim regionie. Kliknij na mapy aby wybrać region:"
