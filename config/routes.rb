@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get '/get_articles' => 'application#get_articles'
+  post '/search' => 'application#search'
 
   post 'comments/create/' => 'comments#create'
   get 'comments/delete/:id' => 'comments#destroy'
