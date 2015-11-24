@@ -19,8 +19,10 @@ class Comment < ActiveRecord::Base
 	def self.search(search)
 		results = []
 		
-		#perform search
+		Comment.where('message LIKE ?', '%' + search + '%').each do |comment|
+			results.push comment
+		end
 		
-		return results	
+		return results
 	end
 end

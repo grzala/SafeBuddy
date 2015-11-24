@@ -11,11 +11,6 @@ describe Comment, 'methods' do
 		user.email = "lala@lala.lala"
 		user.save
 		
-		$com = []
-		$com.push Comment.create!(:date => Time.now, :user_id => 1, :region_id => 1, :message => "just searching for crimes")
-		$com.push Comment.create!(:date => Time.now, :user_id => 2, :region_id => 2, :message => "I love crimes. Also i am a racist and a redneck")
-		$com.push Comment.create!(:date => Time.now, :user_id => 3, :region_id => 3, :message => "Hi i wanted to let you know that your page on crimes totally blows, I can make a similar one in, like, 5 minutes or whatever")
-		
 	end
   end
 
@@ -61,12 +56,24 @@ describe Comment, 'methods' do
   end
   
   it "can search through comments" do
+	Comment.create!(:date => Time.now, :user_id => 1, :region_id => 1, :message => "just searching for crimes")
+	Comment.create!(:date => Time.now, :user_id => 2, :region_id => 2, :message => "I love crimes. Also i am a racist and a redneck")
+	Comment.create!(:date => Time.now, :user_id => 3, :region_id => 3, :message => "Hi i wanted to let you know that your page on crimes totally blows, I can make a similar one in, like, 5 minutes or whatever")
+	
+	messages = ["just searching for crimes",  "I love crimes. Also i am a racist and a redneck",  "Hi i wanted to let you know that your page on crimes totally blows, I can make a similar one in, like, 5 minutes or whatever"]
 	
 	results = Comment.search("crime")
+	result_messages = []
+	results.each do |r|
+		result_messages.push r.message unless result_messages.include?(r.message)
+	end
 	
 	expect(results).to be_an(Array)
-	expect(results).to match_array($com)
-	expect(results.length).to eq(3)
+	
+	expect(result_messages).to match_array(messages)
+	
+	expect(result_messages.length).to eq(3)
+	
   end
 
 end
