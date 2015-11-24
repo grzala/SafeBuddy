@@ -4,6 +4,11 @@ class Comment < ActiveRecord::Base
 	
 	validates :message, length: {maximum: 300}
 	
+	searchable do 
+		
+		
+	end
+	
 	def allowedToEdit(id)
 		return false if !id
 		
