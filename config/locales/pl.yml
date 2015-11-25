@@ -26,6 +26,8 @@ pl:
     comment: "komentarz"
     articles: "artykuły"
     by: "napisany przez"
+    comments: "komentarze"
+    selected: "Wybrałeś"
     
 #main
     main: "Witaj w SafeBuddy. Wybierz region w którym mieszkasz i sprawdź, jakich przestępsw możesz się spodziewać i obawiać w swojej okolicy. Załóż konto, by przestrzegać innych o niebezpieczeństwach w twoim regionie. Kliknij na mapy aby wybrać region:"
@@ -40,7 +42,7 @@ pl:
     add: "dodaj komentarz"
     police region: "region policji"
     Articles on scottish crime: "Artykuły o przestępstwach"
-    wait: "Proszę czekać aż artykuły się czytają..."
+    wait: "Proszę czekać aż artykuły się wczytają..."
 
 #crimes
     Crimes in: "Przestępstwa w"
