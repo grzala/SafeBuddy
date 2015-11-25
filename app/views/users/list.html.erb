@@ -1,0 +1,22 @@
+<div class="row">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th><%=t'username'%></th>
+            <th>e-mail</th>
+            <th><%=t'action'%></th>
+        </tr>
+        <% @users.each do |user| %>
+            <tr>
+                <form action="/users/delete" method="post">
+                    <input type="hidden" name="user_id" value="<%=user.id%>"/>
+                    <td><%=user.id%></td>
+                    <td><%=user.name%></td>
+                    <td><%=user.email%></td>
+                    <td><button class="delete-user"><%=t'delete'%></button></td>
+                </form>
+            </tr>
+        <% end %>
+    </table>
+</div>
+

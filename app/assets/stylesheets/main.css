@@ -109,3 +109,7 @@
 	margin-top: 10px;
 	width: 250px;
 }
+
+table tr th, table tr td {
+	padding: 2px 5px;
+}

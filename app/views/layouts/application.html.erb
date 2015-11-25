@@ -40,9 +40,13 @@
 		  <ul class="dropdown-menu">
 			<li><a href="/police_regions"><%=t'Police Regions'%></a></li>
 			<li><a href="/police_regions/compare"><%=t'Region Comparison'%></a></li>
-			<li role="separator" class="divider"></li>
-			<li class="dropdown-header">Nav header</li>
-			<li><a href="#">Separated link</a></li>
+			<% if !session[:user_id].nil? && User.find(session[:user_id]).isMod %>
+				<li role="separator" class="divider"></li>
+				<li class="dropdown-header"><%=t'mod_options'%></li>
+				
+				<li><a href="/users/list"><%=t'user_list'%></a></li>
+				<li><a href="/news/list"><%=t'article_list'%></a></li>
+			<% end %>
 		  </ul>
 		</li>
 		<li><form action="/search" method="get">

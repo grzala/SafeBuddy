@@ -12,7 +12,12 @@ Rails.application.routes.draw do
 
   get 'users/register' => 'users#register'
   get 'users/all' => 'users#get_all'
+  get 'users/list' => 'users#list'
   post 'users/new' => 'users#new'
+  post 'users/delete' => 'users#delete'
+  
+  get 'news/list' => 'news#list'
+  post 'news/delete' => 'news#delete'
   
   post 'sessions/create' => 'sessions#create'
   get 'sessions/destroy' => 'sessions#destroy'

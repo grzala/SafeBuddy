@@ -1,0 +1,24 @@
+<div class="row">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th><%=t'title'%></th>
+            <th><%=t'paragraph'%></th>
+            <th><%t'source'%></th>
+            <th><%=t'action'%></th>
+        </tr>
+        <% @articles.each do |article| %>
+            <tr>
+                <form action="/news/delete" method="post">
+                    <input type="hidden" name="article_id" value="<%=article.id%>"/>
+                    <td><%=article.id%></td>
+                    <td><%=article.title%></td>
+                    <td><%=article.paragraph%></td>
+                    <td><%=article.src%></td>
+                    <td><button class="delete-article"><%=t'delete'%></button></td>
+                </form>
+            </tr>
+        <% end %>
+    </table>
+</div>
+
