@@ -20,11 +20,11 @@ test: &test
   <<: *default
   database: db/test.sqlite3
 
-production:
+development:
   adapter: postgresql
-  database: my_database_production
-  pool: 5
-  timeout: 5000
+  host: localhost
+  username: user
+  database: app-dev
 
 cucumber:
   <<: *test
