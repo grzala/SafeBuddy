@@ -14,5 +14,5 @@ Comment.create!(:date => Time.now, :user_id => 3, :region_id => 3, :message => "
 
 
 5.times do 
-   Comment.create!(:date => Time.now, :user_id => 1, :region_id => 1, :message => "a lot of comments hete") 
+   Comment.create!(:date => Time.now, :user_id => 1, :region_id => 1, :message => "a lot of comments here") 
 end
