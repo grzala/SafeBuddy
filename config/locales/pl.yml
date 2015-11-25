@@ -109,3 +109,11 @@ pl:
     comment-origin: "Naciśnij tu aby zobaczyć źródło komentarza"
     title: "tytuł"
     more: "Kliknij aby przeczytać więcej"
+
+#mod
+    mod_options: "Opcje moderatora"
+    user_list: "Lista użytkowników"
+    article_list: "Lista artykułów"
+    action: "akcja"
+    paragraph: "akapit"
+    source: "źródło"

@@ -109,3 +109,11 @@ en:
     comment-origin: "Click here to see where comment originated"
     title: "title"
     more: "Read more by clicking here"
+
+#mod
+    mod_options: "Moderator options"
+    user_list: "List of users"
+    article_list: "List of articles"
+    action: "action"
+    paragraph: "paragraph"
+    source: "source"
