@@ -1,28 +1,6 @@
-== README
+This project is a submission for Advanced Web Application development individual submission
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a rails website that accumulates information on crime in scotland (provided by the police as CSV tables) and presents
+it in using javascript graphing libraries. It also scrapes a few news websites in order to find recent updates on crime.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+To run, cd into the folder and run "rails s" command and visit localhost:3000
