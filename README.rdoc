@@ -5,4 +5,4 @@ it in using javascript graphing libraries. It also scrapes a few news websites i
 
 The application uses Capybara, Cucumber and RSpec for testing.
 
-To run, cd into the folder and run "rails s" command and visit localhost:3000
+To run, cd into the folder and run "rake db:migrate", "rake db:seed", "rails s" command and visit localhost:3000
