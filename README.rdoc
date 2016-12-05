@@ -3,4 +3,6 @@ This project is a submission for Advanced Web Application development individual
 This is a rails website that accumulates information on crime in scotland (provided by the police as CSV tables) and presents
 it in using javascript graphing libraries. It also scrapes a few news websites in order to find recent updates on crime.
 
+The application uses Capybara, Cucumber and RSpec for testing.
+
 To run, cd into the folder and run "rails s" command and visit localhost:3000
